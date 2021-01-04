@@ -1,6 +1,23 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schoodule.Functions", "Schoodule.Functions\Schoodule.Functions.csproj", "{369D45A5-812F-4FD3-9D8D-DDC4FD3F142F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{98F9E0D9-8111-454D-803F-88788887DC8C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schoodule.API", "Schoodule.API\Schoodule.API.csproj", "{5FF4DF7C-846D-494B-8326-E40A1BFE6659}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schoodule.Business", "Schoodule.Business\Schoodule.Business.csproj", "{3F773549-562D-4CC0-BE79-9956BCF78560}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{B1C0513A-D7BD-47DE-9048-A4916508912E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schoodule.Business.Tests", "Schoodule.Business.Tests\Schoodule.Business.Tests.csproj", "{17944834-F769-4B64-BB2A-2F6BBB2D16C5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "root", "root", "{7F37C8C5-3C05-4DD9-A15D-A3C5F6C4030A}"
+ProjectSection(SolutionItems) = preProject
+	.editorconfig = .editorconfig
+	.gitignore = .gitignore
+	.gitattributes = .gitattributes
+EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schoodule.Core", "Schoodule.Core\Schoodule.Core.csproj", "{BA28A80C-5C6D-4A6C-BAF7-01B27E6E9E67}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -8,9 +25,27 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{369D45A5-812F-4FD3-9D8D-DDC4FD3F142F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{369D45A5-812F-4FD3-9D8D-DDC4FD3F142F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{369D45A5-812F-4FD3-9D8D-DDC4FD3F142F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{369D45A5-812F-4FD3-9D8D-DDC4FD3F142F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FF4DF7C-846D-494B-8326-E40A1BFE6659}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FF4DF7C-846D-494B-8326-E40A1BFE6659}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FF4DF7C-846D-494B-8326-E40A1BFE6659}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FF4DF7C-846D-494B-8326-E40A1BFE6659}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F773549-562D-4CC0-BE79-9956BCF78560}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F773549-562D-4CC0-BE79-9956BCF78560}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F773549-562D-4CC0-BE79-9956BCF78560}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F773549-562D-4CC0-BE79-9956BCF78560}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17944834-F769-4B64-BB2A-2F6BBB2D16C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17944834-F769-4B64-BB2A-2F6BBB2D16C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17944834-F769-4B64-BB2A-2F6BBB2D16C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17944834-F769-4B64-BB2A-2F6BBB2D16C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA28A80C-5C6D-4A6C-BAF7-01B27E6E9E67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA28A80C-5C6D-4A6C-BAF7-01B27E6E9E67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA28A80C-5C6D-4A6C-BAF7-01B27E6E9E67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA28A80C-5C6D-4A6C-BAF7-01B27E6E9E67}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5FF4DF7C-846D-494B-8326-E40A1BFE6659} = {98F9E0D9-8111-454D-803F-88788887DC8C}
+		{3F773549-562D-4CC0-BE79-9956BCF78560} = {98F9E0D9-8111-454D-803F-88788887DC8C}
+		{17944834-F769-4B64-BB2A-2F6BBB2D16C5} = {B1C0513A-D7BD-47DE-9048-A4916508912E}
+		{BA28A80C-5C6D-4A6C-BAF7-01B27E6E9E67} = {98F9E0D9-8111-454D-803F-88788887DC8C}
 	EndGlobalSection
 EndGlobal
