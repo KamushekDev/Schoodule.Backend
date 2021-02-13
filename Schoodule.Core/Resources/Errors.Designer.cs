@@ -50,5 +50,11 @@ namespace Schoodule.Core {
                 return ResourceManager.GetString("E1", resourceCulture);
             }
         }
+        
+        public static string E2 {
+            get {
+                return ResourceManager.GetString("E2", resourceCulture);
+            }
+        }
     }
 }

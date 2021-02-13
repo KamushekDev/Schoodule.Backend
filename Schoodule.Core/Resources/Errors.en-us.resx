@@ -14,4 +14,7 @@
     <data name="E1" xml:space="preserve">
         <value>Name must not be empty</value>
     </data>
+    <data name="E2" xml:space="preserve">
+        <value>Entity with that isn't found.</value>
+    </data>
 </root>

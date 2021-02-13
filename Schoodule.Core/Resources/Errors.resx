@@ -21,4 +21,7 @@
     <data name="E1" xml:space="preserve">
         <value>Имя не должно быть пустым</value>
     </data>
+    <data name="E2" xml:space="preserve">
+        <value>Сущность с таким именем не найдена.</value>
+    </data>
 </root>

@@ -1,28 +1,26 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Linq;
+using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using FluentValidation;
-using Schoodule.Core;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Schoodule.Core.Exceptions;
+using Schoodule.Core;
 using Schoodule.DataAccess;
 using Schoodule.DataAccess.Entities;
 
 namespace Schoodule.Business.Features.Example
 {
-	public static class Get
+	public static class Add
 	{
 		public sealed class Command : IRequest<ExampleEntity>
 		{
 			[Required]
-			public string Name { get; }
+			public Example Example { get; }
 
-			public Command(string name)
+			public Command(Example example)
 			{
-				Name = name;
+				Example = example;
 			}
 		}
 
@@ -30,9 +28,13 @@ namespace Schoodule.Business.Features.Example
 		{
 			public Validator()
 			{
-				RuleFor(r => r.Name)
+				RuleFor(r => r.Example)
+					.NotNull();
+				RuleFor(r => r.Example.Name)
 					.NotEmpty()
 					.WithMessage(Errors.E1);
+				RuleFor(r => r.Example.Type)
+					.NotNull();
 			}
 		}
 
@@ -51,16 +53,23 @@ namespace Schoodule.Business.Features.Example
 
 			public async Task<ExampleEntity> Handle(Command request, CancellationToken cancellationToken)
 			{
-				_logger.LogDebug("Start of example get command.");
-				var entity = await _dbContext.Examples.FirstOrDefaultAsync(
-					x => x.Name == request.Name,
-					cancellationToken);
-				if (entity == null)
-				{
-					throw new EntityNotFoundException(Errors.E2);
-				}
+				_logger.LogDebug("Start of example add command");
 
-				return entity;
+				var exampleEntity = new ExampleEntity
+				{
+					Name = request.Example.Name,
+					NickName = request.Example.NickName,
+					Type = request.Example.Type
+				};
+
+				var result = await _dbContext.AddAsync(exampleEntity, cancellationToken);
+
+				var changes = await _dbContext.SaveChangesAsync(cancellationToken);
+				_logger.LogInformation($"Added entity with id: {result.Entity.Id}");
+
+				Debug.Assert(changes == 1, "changes == 1");
+
+				return result.Entity;
 			}
 		}
 	}
