@@ -58,6 +58,8 @@ namespace Schoodule.API
 
 			services.AddDbContext<AppDbContext>(options => options.UseNpgsql(dbConnectionString));
 
+			services.AddAutoMapper(typeof(BusinessLayer).Assembly);
+
 			services.AddMediatR(typeof(BusinessLayer));
 			services.Scan(
 				scan => scan

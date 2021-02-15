@@ -9,7 +9,7 @@ namespace Schoodule.Business.Tests
 		public static AppDbContext CreateInMemoryDbContext()
 		{
 			var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
-			optionsBuilder.UseInMemoryDatabase($"notif_{Guid.NewGuid()}");
+			optionsBuilder.UseInMemoryDatabase($"schoodule_{Guid.NewGuid()}");
 			var appDbContext = new AppDbContext(optionsBuilder.Options);
 
 			SeedDatabase(appDbContext);

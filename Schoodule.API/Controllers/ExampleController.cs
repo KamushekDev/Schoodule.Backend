@@ -30,7 +30,7 @@ namespace Schoodule.API.Controllers
 			return _mediator.Send(new GetAll.Command());
 		}
 
-		[HttpGet("name:string")]
+		[HttpGet("{name:string}")]
 		[ProducesResponseType(typeof(ExampleEntity), StatusCodes.Status200OK)]
 		public Task<ExampleEntity> Get(string name)
 		{
