@@ -10,6 +10,8 @@ namespace Schoodule.DataAccess
 
 		public DbSet<ExampleEntity> Examples { get; set; }
 
+		public DbSet<SchoolEntity> Schools { get; set; }
+
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			base.OnModelCreating(modelBuilder);

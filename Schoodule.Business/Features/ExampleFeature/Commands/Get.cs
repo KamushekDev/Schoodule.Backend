@@ -1,17 +1,16 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using FluentValidation;
-using Schoodule.Core;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Schoodule.Core;
 using Schoodule.Core.Exceptions;
 using Schoodule.DataAccess;
 using Schoodule.DataAccess.Entities;
 
-namespace Schoodule.Business.Features.Example
+namespace Schoodule.Business.Features.ExampleFeature
 {
 	public static class Get
 	{

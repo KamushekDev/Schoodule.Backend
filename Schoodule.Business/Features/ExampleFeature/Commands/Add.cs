@@ -9,16 +9,16 @@ using Schoodule.Core;
 using Schoodule.DataAccess;
 using Schoodule.DataAccess.Entities;
 
-namespace Schoodule.Business.Features.Example
+namespace Schoodule.Business.Features.ExampleFeature
 {
 	public static class Add
 	{
 		public sealed class Command : IRequest<ExampleEntity>
 		{
 			[Required]
-			public Example Example { get; }
+			public Example.Example Example { get; }
 
-			public Command(Example example)
+			public Command(Example.Example example)
 			{
 				Example = example;
 			}

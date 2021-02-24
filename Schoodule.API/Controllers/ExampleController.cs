@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Schoodule.Business.Features.Example;
+using Schoodule.Business.Features.ExampleFeature;
 using Schoodule.DataAccess.Entities;
 
 namespace Schoodule.API.Controllers

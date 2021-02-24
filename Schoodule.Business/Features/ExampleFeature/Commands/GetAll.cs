@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 using Schoodule.DataAccess;
 using Schoodule.DataAccess.Entities;
 
-namespace Schoodule.Business.Features.Example
+namespace Schoodule.Business.Features.ExampleFeature
 {
 	public static class GetAll
 	{

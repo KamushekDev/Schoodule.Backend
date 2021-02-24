@@ -18,8 +18,13 @@
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\Contracts\Contracts.csproj" />
         <ProjectReference Include="..\Schoodule.Core\Schoodule.Core.csproj" />
         <ProjectReference Include="..\Schoodule.DataAccess\Schoodule.DataAccess.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Features\SchoolFeature\Models" />
     </ItemGroup>
 
 </Project>

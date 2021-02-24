@@ -6,6 +6,7 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using Moq;
 using Schoodule.Business.Features.Example;
+using Schoodule.Business.Features.ExampleFeature;
 using Schoodule.Core.Exceptions;
 using Schoodule.DataAccess;
 using Schoodule.DataAccess.Entities;
