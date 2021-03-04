@@ -8,8 +8,6 @@ namespace Schoodule.DataAccess
 		public AppDbContext(DbContextOptions<AppDbContext> options)
 			: base(options) { }
 
-		public DbSet<ExampleEntity> Examples { get; set; }
-
 		public DbSet<SchoolEntity> Schools { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -38,6 +38,8 @@ namespace Schoodule.Business.Features.SchoolFeature
 
 				var entity = _mapper.Map<SchoolEntity>(school);
 				var result = await _context.Schools.AddAsync(entity, token);
+
+				await _context.SaveChangesAsync(token);
 				return _mapper.Map<School>(result.Entity);
 			}
 		}

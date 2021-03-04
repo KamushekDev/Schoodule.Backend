@@ -34,19 +34,14 @@ namespace Schoodule.Business.Features.SchoolFeature
 			{
 				if (request.Id.HasValue)
 				{
-					var entity = _context.Schools.FindAsync(request.Id.Value, cancellationToken);
-					return _mapper.Map<School>(entity.Result);
-				}
-				else if (request.Name is not null)
-				{
-					var entity = _context.Schools.FirstAsync(
-						x => x.Name.Equals(request.Name, StringComparison.InvariantCultureIgnoreCase),
-						cancellationToken);
+					var entity = await _context.Schools.FindAsync(new object[]{request.Id.Value}, cancellationToken);
+					if (entity is null)
+						throw new EntityNotFoundException($"School with id {request.Id} wasn't found.");
 					return _mapper.Map<School>(entity);
 				}
-
+				
 				//todo: fix exception
-				throw new UserException("Пашол нахой с пустым запросом.");
+				throw new UserException("Пашол нахой, без id не входи.");
 			}
 		}
 	}

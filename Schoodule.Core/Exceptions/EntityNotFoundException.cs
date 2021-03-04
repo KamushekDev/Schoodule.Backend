@@ -5,10 +5,10 @@ namespace Schoodule.Core.Exceptions
 {
 	public class EntityNotFoundException : UserException
 	{
-		public EntityNotFoundException(string message) : base(StatusCodes.Status200OK, message) { }
+		public EntityNotFoundException(string message) : base(StatusCodes.Status404NotFound, message) { }
 
 		public EntityNotFoundException(string message, Exception innerException) : base(
-			StatusCodes.Status200OK,
+			StatusCodes.Status404NotFound,
 			message,
 			innerException) { }
 	}

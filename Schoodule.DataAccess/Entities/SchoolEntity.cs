@@ -1,11 +1,13 @@
-using System.Reflection.Metadata.Ecma335;
+using System.Collections.Generic;
 
 namespace Schoodule.DataAccess.Entities
 {
 	public class SchoolEntity
 	{
-		public int Id { get; set; }
+		public long Id { get; set; }
 		public string Name { get; set; }
-		public int Type { get; set; }
+		public SchoolTypeEntity SchoolType { get; set; }
+		public long SchoolTypeId { get; set; }
+		public ICollection<GroupEntity> Groups { get; set; } = new List<GroupEntity>();
 	}
 }

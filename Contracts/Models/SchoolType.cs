@@ -1,9 +1,8 @@
 namespace Contract.Models
 {
-	public enum SchoolType
+	public class SchoolType
 	{
-		School,
-		College,
-		University
+		public long SchoolTypeId { get; set; }
+		public string Name { get; set; }
 	}
 }

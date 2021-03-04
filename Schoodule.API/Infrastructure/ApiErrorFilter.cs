@@ -15,6 +15,7 @@ namespace Schoodule.API.Infrastructure
 			if (context.Exception is UserException userException)
 			{
 				context.HttpContext.Response.StatusCode = userException.StatusCode;
+				context.ExceptionHandled = true;
 			}
 
 			//todo: filter exceptions 

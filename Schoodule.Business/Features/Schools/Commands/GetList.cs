@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -6,12 +7,16 @@ using Contract.Models;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Schoodule.DataAccess;
+using Schoodule.DataAccess.Entities;
 
 namespace Schoodule.Business.Features.SchoolFeature
 {
 	public static class GetList
 	{
-		public class Command : IRequest<List<School>> { }
+		public class Command : IRequest<List<School>>
+		{
+			public string Name { get; set; }
+		}
 
 		public class Handler : IRequestHandler<Command, List<School>>
 		{
@@ -27,9 +32,17 @@ namespace Schoodule.Business.Features.SchoolFeature
 			public async Task<List<School>> Handle(Command request, CancellationToken cancellationToken)
 			{
 				//todo: filter by user
-				var entities = _context.Schools;
+				var entities = _context.Schools as IQueryable<SchoolEntity>;
 
-				return await _mapper.ProjectTo<School>(entities).ToListAsync(cancellationToken);
+				if (request.Name is not null)
+				{
+					entities = entities.Where(
+						x => x.Name.ToUpper()
+							.Contains(request.Name.ToUpper()));
+				}
+
+				return await _mapper.ProjectTo<School>(entities)
+					.ToListAsync(cancellationToken);
 			}
 		}
 	}

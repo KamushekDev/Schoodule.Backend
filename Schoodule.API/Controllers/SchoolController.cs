@@ -1,0 +1,58 @@
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+using Contract.Models;
+using MediatR;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using Schoodule.Business.Features.SchoolFeature;
+
+namespace Schoodule.API.Controllers
+{
+	[Route("api/v1/school")]
+	public sealed class SchoolController : ControllerBase
+	{
+		private readonly IMediator _mediator;
+		private readonly ILogger<SchoolController> _logger;
+
+		public SchoolController(IMediator mediator, ILogger<SchoolController> logger)
+		{
+			_mediator = mediator;
+			_logger = logger;
+		}
+
+		[HttpGet]
+		[ProducesResponseType(typeof(IList<School>), StatusCodes.Status200OK)]
+		public Task<List<School>> Get()
+		{
+			return _mediator.Send(new GetList.Command());
+		}
+
+		[HttpGet("{id:int}")]
+		[ProducesResponseType(typeof(School), StatusCodes.Status200OK)]
+		public Task<School> Get(int id)
+		{
+			return _mediator.Send(new Get.Command {Id = id});
+		}
+
+		[HttpPost]
+		[ProducesResponseType(typeof(School), StatusCodes.Status200OK)]
+		public Task<School> Post([FromBody] School school)
+		{
+			return _mediator.Send(new Add.Command() {Name = school.Name, Type = school.Type});
+		}
+
+		[HttpGet("search/{name}")]
+		public Task<List<School>> Post(string name, CancellationToken token)
+		{
+			return _mediator.Send(new GetList.Command() {Name = name}, token);
+		}
+
+		[HttpDelete("{id:int}")]
+		public Task Delete(int id, CancellationToken token)
+		{
+			return _mediator.Send(new Delete.Command {Id = id}, token);
+		}
+	}
+}
