@@ -28,6 +28,9 @@ namespace Schoodule.DataAccess.Configs
 			builder.HasOne(x => x.School)
 				.WithMany(x => x.Groups)
 				.HasForeignKey(x => x.SchoolId);
+
+			builder.HasMany(x => x.Users)
+				.WithMany(x => x.Groups);
 		}
 	}
 }
