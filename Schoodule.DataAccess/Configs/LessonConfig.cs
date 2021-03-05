@@ -4,33 +4,28 @@ using Schoodule.DataAccess.Entities;
 
 namespace Schoodule.DataAccess.Configs
 {
-	public class GroupConfig : IEntityTypeConfiguration<GroupEntity>
+	public class LessonConfig : IEntityTypeConfiguration<LessonEntity>
 	{
-		public void Configure(EntityTypeBuilder<GroupEntity> builder)
+		public void Configure(EntityTypeBuilder<LessonEntity> builder)
 		{
-			builder.ToTable("groups");
-			builder.HasKey(x => x.GroupId);
+			builder.ToTable("lessons");
+			builder.HasKey(x => x.LessonId);
 
-			builder.Property(x => x.GroupId)
+			builder.Property(x => x.LessonId)
 				.HasColumnName("id")
 				.IsRequired()
 				.ValueGeneratedOnAdd();
-
 			builder.Property(x => x.Name)
 				.HasColumnName("name")
 				.IsRequired()
 				.HasMaxLength(100);
-
 			builder.Property(x => x.SchoolId)
-				.HasColumnName("school_id")
+				.HasColumnName("group_id")
 				.IsRequired();
 
 			builder.HasOne(x => x.School)
-				.WithMany(x => x.Groups)
+				.WithMany(x => x.Lessons)
 				.HasForeignKey(x => x.SchoolId);
-
-			builder.HasMany(x => x.Users)
-				.WithMany(x => x.Groups);
 		}
 	}
 }

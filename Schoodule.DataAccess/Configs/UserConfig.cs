@@ -8,11 +8,11 @@ namespace Schoodule.DataAccess.Configs
 	{
 		public void Configure(EntityTypeBuilder<UserEntity> builder)
 		{
-			builder.ToTable("uses");
+			builder.ToTable("users");
 			builder.HasKey(x => x.UserId);
 
 			builder.Property(x => x.UserId)
-				.HasColumnName("user_id")
+				.HasColumnName("id")
 				.IsRequired()
 				.ValueGeneratedOnAdd();
 

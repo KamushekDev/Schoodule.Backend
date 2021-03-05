@@ -9,6 +9,9 @@ namespace Schoodule.DataAccess
 			: base(options) { }
 
 		public DbSet<SchoolEntity> Schools { get; set; }
+		public DbSet<UserEntity> Users { get; set; }
+		public DbSet<SchoolTypeEntity> SchoolTypes { get; set; }
+		public DbSet<GroupEntity> Groups { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{

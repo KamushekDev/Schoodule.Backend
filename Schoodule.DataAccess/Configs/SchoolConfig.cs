@@ -8,11 +8,11 @@ namespace Schoodule.DataAccess.Configs
 	{
 		public void Configure(EntityTypeBuilder<SchoolEntity> builder)
 		{
-			builder.ToTable("school");
+			builder.ToTable("schools");
 			builder.HasKey(x => x.Id);
 
 			builder.Property(x => x.Id)
-				.HasColumnName("school_id")
+				.HasColumnName("id")
 				.IsRequired()
 				.ValueGeneratedOnAdd();
 			builder.Property(x => x.Name)

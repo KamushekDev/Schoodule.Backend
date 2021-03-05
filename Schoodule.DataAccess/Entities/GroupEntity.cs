@@ -8,6 +8,6 @@ namespace Schoodule.DataAccess.Entities
 		public string Name { get; set; }
 		public long SchoolId { get; set; }
 		public SchoolEntity School { get; set; }
-		public ICollection<UserEntity> Users { get; set; }
+		public ICollection<UserEntity> Users { get; set; } = new List<UserEntity>();
 	}
 }

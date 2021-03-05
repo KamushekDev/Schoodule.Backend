@@ -9,5 +9,6 @@ namespace Schoodule.DataAccess.Entities
 		public SchoolTypeEntity SchoolType { get; set; }
 		public long SchoolTypeId { get; set; }
 		public ICollection<GroupEntity> Groups { get; set; } = new List<GroupEntity>();
+		public ICollection<LessonEntity> Lessons { get; set; } = new List<LessonEntity>();
 	}
 }
