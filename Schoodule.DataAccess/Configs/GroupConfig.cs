@@ -9,9 +9,9 @@ namespace Schoodule.DataAccess.Configs
 		public void Configure(EntityTypeBuilder<GroupEntity> builder)
 		{
 			builder.ToTable("groups");
-			builder.HasKey(x => x.GroupId);
+			builder.HasKey(x => x.Id);
 
-			builder.Property(x => x.GroupId)
+			builder.Property(x => x.Id)
 				.HasColumnName("id")
 				.IsRequired()
 				.ValueGeneratedOnAdd();

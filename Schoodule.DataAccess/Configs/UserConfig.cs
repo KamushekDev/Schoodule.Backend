@@ -9,9 +9,9 @@ namespace Schoodule.DataAccess.Configs
 		public void Configure(EntityTypeBuilder<UserEntity> builder)
 		{
 			builder.ToTable("users");
-			builder.HasKey(x => x.UserId);
+			builder.HasKey(x => x.Id);
 
-			builder.Property(x => x.UserId)
+			builder.Property(x => x.Id)
 				.HasColumnName("id")
 				.IsRequired()
 				.ValueGeneratedOnAdd();

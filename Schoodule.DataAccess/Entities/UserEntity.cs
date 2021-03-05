@@ -4,7 +4,7 @@ namespace Schoodule.DataAccess.Entities
 {
 	public class UserEntity
 	{
-		public long UserId { get; set; }
+		public long Id { get; set; }
 		public string Username { get; set; }
 
 		public ICollection<GroupEntity> Groups { get; set; } = new List<GroupEntity>();
