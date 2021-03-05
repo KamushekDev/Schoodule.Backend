@@ -22,12 +22,15 @@ namespace Schoodule.DataAccess.Configs
 			builder.Property(x => x.SchoolTypeId)
 				.HasColumnName("school_type_id")
 				.IsRequired();
+
 			builder.HasOne(x => x.SchoolType)
 				.WithMany(x => x.Schools)
 				.HasForeignKey(x => x.SchoolTypeId);
-
 			builder.HasMany(x => x.Groups)
 				.WithOne(x => x.School);
+			builder.HasMany(x => x.Teachers)
+				.WithOne(x => x.School)
+				.HasForeignKey(x => x.SchoolId);
 
 			builder.HasIndex(x => x.Name)
 				.IsUnique();
