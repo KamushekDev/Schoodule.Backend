@@ -23,7 +23,7 @@ namespace Schoodule.DataAccess.Configs
 				.HasColumnName("school_type_id")
 				.IsRequired();
 
-			builder.HasOne(x => x.SchoolType)
+			builder.HasOne(x => x.Type)
 				.WithMany(x => x.Schools)
 				.HasForeignKey(x => x.SchoolTypeId);
 			builder.HasMany(x => x.Groups)

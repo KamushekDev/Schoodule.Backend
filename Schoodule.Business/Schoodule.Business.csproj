@@ -25,7 +25,6 @@
 
     <ItemGroup>
       <Folder Include="Features\Schools\Models" />
-      <Folder Include="Features\SchoolTypes" />
     </ItemGroup>
 
 </Project>

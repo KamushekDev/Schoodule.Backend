@@ -21,7 +21,7 @@ namespace Schoodule.DataAccess.Configs
 				.HasMaxLength(100);
 
 			builder.HasMany(x => x.Schools)
-				.WithOne(x => x.SchoolType)
+				.WithOne(x => x.Type)
 				.HasForeignKey(x => x.SchoolTypeId);
 		}
 	}

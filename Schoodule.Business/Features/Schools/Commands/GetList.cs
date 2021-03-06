@@ -9,14 +9,11 @@ using Microsoft.EntityFrameworkCore;
 using Schoodule.DataAccess;
 using Schoodule.DataAccess.Entities;
 
-namespace Schoodule.Business.Features.SchoolFeature
+namespace Schoodule.Business.Features.Schools
 {
 	public static class GetList
 	{
-		public class Command : IRequest<List<School>>
-		{
-			public string Name { get; set; }
-		}
+		public record Command(string Name = null) : IRequest<List<School>>;
 
 		public class Handler : IRequestHandler<Command, List<School>>
 		{

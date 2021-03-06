@@ -1,23 +1,17 @@
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using Contract.Models;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
+using Schoodule.Business.Infrastructure;
 using Schoodule.Core.Exceptions;
 using Schoodule.DataAccess;
-using Schoodule.DataAccess.Entities;
 
-namespace Schoodule.Business.Features.SchoolFeature
+namespace Schoodule.Business.Features.Schools
 {
 	public static class Get
 	{
-		public class Command : IRequest<School>
-		{
-			public int? Id { get; set; }
-			public string Name { get; set; }
-		}
+		public record Command(long Id) : IRequest<School>;
 
 		public class Handler : IRequestHandler<Command, School>
 		{
@@ -32,16 +26,10 @@ namespace Schoodule.Business.Features.SchoolFeature
 
 			public async Task<School> Handle(Command request, CancellationToken cancellationToken)
 			{
-				if (request.Id.HasValue)
-				{
-					var entity = await _context.Schools.FindAsync(new object[]{request.Id.Value}, cancellationToken);
-					if (entity is null)
-						throw new EntityNotFoundException($"School with id {request.Id} wasn't found.");
-					return _mapper.Map<School>(entity);
-				}
-				
-				//todo: fix exception
-				throw new UserException("Пашол нахой, без id не входи.");
+				var entity = await _context.Schools.FindByKeysAsync(cancellationToken, request.Id);
+				if (entity is null)
+					throw new EntityNotFoundException($"School with id {request.Id} wasn't found.");
+				return _mapper.Map<School>(entity);
 			}
 		}
 	}

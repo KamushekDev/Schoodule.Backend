@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -44,7 +45,7 @@ namespace Schoodule.API
 				.AddNpgSql(dbConnectionString)
 				.AddDbContextCheck<AppDbContext>();
 
-			services.AddSwaggerGen();
+			services.AddSwaggerGen(options => { options.CustomSchemaIds(type => type.ToString()); });
 			services.AddControllers(options => { options.Filters.Add<ApiErrorFilter>(); })
 				.AddJsonOptions(
 					options =>

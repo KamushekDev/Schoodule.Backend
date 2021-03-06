@@ -1,21 +1,16 @@
 using System.Threading;
 using System.Threading.Tasks;
-using System.Xml.Schema;
 using AutoMapper;
 using Contract.Models;
 using MediatR;
 using Schoodule.DataAccess;
 using Schoodule.DataAccess.Entities;
 
-namespace Schoodule.Business.Features.SchoolFeature
+namespace Schoodule.Business.Features.Schools
 {
 	public static class Add
 	{
-		public class Command : IRequest<School>
-		{
-			public string Name { get; set; }
-			public SchoolType Type { get; set; }
-		}
+		public record Command(string Name, long SchoolTypeId) : IRequest<School>;
 
 		public class Handler : IRequestHandler<Command, School>
 		{
@@ -30,14 +25,13 @@ namespace Schoodule.Business.Features.SchoolFeature
 
 			public async Task<School> Handle(Command command, CancellationToken token)
 			{
-				var school = new School
+				var school = new SchoolEntity
 				{
 					Name = command.Name,
-					Type = command.Type
+					SchoolTypeId = command.SchoolTypeId,
 				};
 
-				var entity = _mapper.Map<SchoolEntity>(school);
-				var result = await _context.Schools.AddAsync(entity, token);
+				var result = await _context.Schools.AddAsync(school, token);
 
 				await _context.SaveChangesAsync(token);
 				return _mapper.Map<School>(result.Entity);

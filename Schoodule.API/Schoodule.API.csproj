@@ -32,4 +32,11 @@
       <None Remove="internal-nlog.log" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Controllers\Headman" />
+      <Folder Include="Controllers\SchoolAdmin" />
+      <Folder Include="Controllers\Teacher" />
+      <Folder Include="Controllers\User" />
+    </ItemGroup>
+
 </Project>
