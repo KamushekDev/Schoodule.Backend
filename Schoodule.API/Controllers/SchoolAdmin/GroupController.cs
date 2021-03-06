@@ -34,14 +34,14 @@ namespace Schoodule.API.Controllers.SchoolAdmin
 		[ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]
 		public Task<Group> Get(int id)
 		{
-			return _mediator.Send(new Get.Command(id));
+			return _mediator.Send(new Get.Command {Id = id});
 		}
 
 		[HttpGet("search/{name}")]
 		[ProducesResponseType(typeof(List<Group>), StatusCodes.Status200OK)]
 		public Task<List<Group>> Post(string name, CancellationToken token)
 		{
-			return _mediator.Send(new GetList.Command(name), token);
+			return _mediator.Send(new GetList.Command {Name = name}, token);
 		}
 
 		[HttpPost]
@@ -56,7 +56,7 @@ namespace Schoodule.API.Controllers.SchoolAdmin
 		[ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]
 		public Task Delete(int id, CancellationToken token)
 		{
-			return _mediator.Send(new Delete.Command(id), token);
+			return _mediator.Send(new Delete.Command {Id = id}, token);
 		}
 	}
 }

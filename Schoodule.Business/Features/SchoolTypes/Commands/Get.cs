@@ -13,7 +13,11 @@ namespace Schoodule.Business.Features.SchoolTypes
 {
 	public static class Get
 	{
-		public record Command([property: Required] long Id) : IRequest<SchoolType>;
+		public class Command : IRequest<SchoolType>
+		{
+			[Required]
+			public long Id { get; init; }
+		}
 
 		public class Handler : IRequestHandler<Command, SchoolType>
 		{

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -11,7 +12,11 @@ namespace Schoodule.Business.Features.Groups
 {
 	public static class GetList
 	{
-		public record Command(string Name = null) : IRequest<List<Group>>;
+		public class Command : IRequest<List<Group>>
+		{
+			[Required]
+			public string Name { get; init; }
+		}
 
 		public class Handler : IRequestHandler<Command, List<Group>>
 		{

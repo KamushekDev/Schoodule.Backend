@@ -11,7 +11,11 @@ namespace Schoodule.Business.Features.Schools
 {
 	public static class Delete
 	{
-		public record Command([property: Required] long Id) : IRequest;
+		public class Command : IRequest
+		{
+			[Required]
+			public long Id { get; init; }
+		}
 
 		public class Handler : IRequestHandler<Command>
 		{

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -6,13 +7,16 @@ using Contract.Models;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Schoodule.DataAccess;
-using Schoodule.DataAccess.Entities;
 
 namespace Schoodule.Business.Features.SchoolTypes
 {
 	public static class GetList
 	{
-		public record Command(string Name = null) : IRequest<List<SchoolType>>;
+		public class Command : IRequest<List<SchoolType>>
+		{
+			[Required]
+			public string Name { get; init; }
+		}
 
 		public class Handler : IRequestHandler<Command, List<SchoolType>>
 		{

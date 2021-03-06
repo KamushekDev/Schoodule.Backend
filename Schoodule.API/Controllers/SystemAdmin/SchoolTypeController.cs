@@ -38,7 +38,7 @@ namespace Schoodule.API.Controllers.SystemAdmin
 		[ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]
 		public Task<SchoolType> Get(int id)
 		{
-			return _mediator.Send(new Get.Command(id));
+			return _mediator.Send(new Get.Command {Id = id});
 		}
 
 		[HttpDelete("{id:int}")]
@@ -46,7 +46,7 @@ namespace Schoodule.API.Controllers.SystemAdmin
 		[ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]
 		public Task Delete(int id, CancellationToken token)
 		{
-			return _mediator.Send(new Delete.Command(id), token);
+			return _mediator.Send(new Delete.Command {Id = id}, token);
 		}
 	}
 }
