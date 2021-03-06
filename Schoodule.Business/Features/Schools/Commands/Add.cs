@@ -1,7 +1,7 @@
+using System.ComponentModel.DataAnnotations;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
-using Contract.Models;
 using MediatR;
 using Schoodule.DataAccess;
 using Schoodule.DataAccess.Entities;
@@ -10,9 +10,11 @@ namespace Schoodule.Business.Features.Schools
 {
 	public static class Add
 	{
-		public record Command(string Name, long SchoolTypeId) : IRequest<School>;
+		public record Command(
+			[property: Required] string Name,
+			[property: Required] long SchoolTypeId) : IRequest<long>;
 
-		public class Handler : IRequestHandler<Command, School>
+		public class Handler : IRequestHandler<Command, long>
 		{
 			private readonly IMapper _mapper;
 			private readonly AppDbContext _context;
@@ -23,7 +25,7 @@ namespace Schoodule.Business.Features.Schools
 				_context = context;
 			}
 
-			public async Task<School> Handle(Command command, CancellationToken token)
+			public async Task<long> Handle(Command command, CancellationToken token)
 			{
 				var school = new SchoolEntity
 				{
@@ -34,7 +36,7 @@ namespace Schoodule.Business.Features.Schools
 				var result = await _context.Schools.AddAsync(school, token);
 
 				await _context.SaveChangesAsync(token);
-				return _mapper.Map<School>(result.Entity);
+				return (result.Entity.Id);
 			}
 		}
 	}

@@ -37,8 +37,8 @@ namespace Schoodule.API.Controllers.SystemAdmin
 		}
 
 		[HttpPost]
-		[ProducesResponseType(typeof(School), StatusCodes.Status200OK)]
-		public Task<School> Post([FromBody] Add.Command request)
+		[ProducesResponseType(typeof(long), StatusCodes.Status200OK)]
+		public Task<long> Post([FromBody] Add.Command request)
 		{
 			return _mediator.Send(request);
 		}

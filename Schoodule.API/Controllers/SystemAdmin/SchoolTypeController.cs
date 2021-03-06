@@ -20,8 +20,8 @@ namespace Schoodule.API.Controllers.SystemAdmin
 		}
 
 		[HttpPost]
-		[ProducesResponseType(typeof(SchoolType), StatusCodes.Status200OK)]
-		public Task<SchoolType> Add([FromBody] Add.Command request, CancellationToken token)
+		[ProducesResponseType(typeof(long), StatusCodes.Status200OK)]
+		public Task<long> Add([FromBody] Add.Command request, CancellationToken token)
 		{
 			return _mediator.Send(request, token);
 		}

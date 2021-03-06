@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -11,7 +12,7 @@ namespace Schoodule.Business.Features.Schools
 {
 	public static class Get
 	{
-		public record Command(long Id) : IRequest<School>;
+		public record Command([property: Required] long Id) : IRequest<School>;
 
 		public class Handler : IRequestHandler<Command, School>
 		{
