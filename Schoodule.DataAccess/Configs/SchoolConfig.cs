@@ -31,6 +31,9 @@ namespace Schoodule.DataAccess.Configs
 			builder.HasMany(x => x.Teachers)
 				.WithOne(x => x.School)
 				.HasForeignKey(x => x.SchoolId);
+			builder.HasMany(x => x.LessonTypes)
+				.WithOne(x => x.School)
+				.HasForeignKey(x => x.SchoolId);
 
 			builder.HasIndex(x => x.Name)
 				.IsUnique();

@@ -15,7 +15,6 @@ namespace Schoodule.DataAccess.Configs
 				.HasColumnName("id")
 				.IsRequired()
 				.ValueGeneratedOnAdd();
-
 			builder.Property(x => x.Username)
 				.HasColumnName("username")
 				.IsRequired()

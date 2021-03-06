@@ -13,8 +13,8 @@
         <PackageReference Include="AutoMapper" Version="10.1.1" />
         <PackageReference Include="FluentValidation" Version="9.3.0" />
         <PackageReference Include="MediatR" Version="9.0.0" />
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
-        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="[6.0.0-preview.1.21102.12,)" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="[6.0.0-preview.1.21102.12,)" />
     </ItemGroup>
 
     <ItemGroup>

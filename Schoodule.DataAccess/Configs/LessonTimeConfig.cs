@@ -4,29 +4,28 @@ using Schoodule.DataAccess.Entities;
 
 namespace Schoodule.DataAccess.Configs
 {
-	public class RoomConfig : IEntityTypeConfiguration<RoomEntity>
+	public class LessonTimeConfig : IEntityTypeConfiguration<LessonTimeEntity>
 	{
-		public void Configure(EntityTypeBuilder<RoomEntity> builder)
+		public void Configure(EntityTypeBuilder<LessonTimeEntity> builder)
 		{
-			builder.ToTable("rooms");
+			builder.ToTable("lesson_times");
 			builder.HasKey(x => x.Id);
 
 			builder.Property(x => x.Id)
 				.HasColumnName("id")
 				.IsRequired()
 				.ValueGeneratedOnAdd();
+			builder.Property(x => x.Time)
+				.HasColumnName("time")
+				.IsRequired();
+			builder.Property(x => x.Symbol)
+				.HasColumnName("symbol");
 			builder.Property(x => x.SchoolId)
 				.HasColumnName("school_id")
 				.IsRequired();
-			builder.Property(x => x.Room)
-				.HasColumnName("room")
-				.HasMaxLength(100);
-			builder.Property(x => x.Uri)
-				.HasColumnName("uri")
-				.HasMaxLength(300);
 
 			builder.HasOne(x => x.School)
-				.WithMany(x => x.Rooms)
+				.WithMany(x => x.LessonTimes)
 				.HasForeignKey(x => x.SchoolId);
 		}
 	}

@@ -13,6 +13,10 @@ namespace Schoodule.DataAccess
 		public DbSet<SchoolTypeEntity> SchoolTypes { get; set; }
 		public DbSet<GroupEntity> Groups { get; set; }
 		public DbSet<LessonEntity> Lessons { get; set; }
+		public DbSet<LessonTypeEntity> LessonTypes { get; set; }
+		public DbSet<LessonTimeEntity> LessonTimes { get; set; }
+		public DbSet<RoomEntity> Rooms { get; set; }
+		public DbSet<TeacherEntity> Teachers { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{

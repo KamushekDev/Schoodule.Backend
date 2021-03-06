@@ -56,6 +56,7 @@ namespace Schoodule.API
 						options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
 					});
 
+			NpgsqlConnection.GlobalTypeMapper.UseNodaTime();
 			services.AddDbContext<AppDbContext>(options => options.UseNpgsql(dbConnectionString));
 
 			services.AddAutoMapper(typeof(BusinessLayer).Assembly);
