@@ -18,8 +18,8 @@ namespace Schoodule.DataAccess.Configs
 			builder.Property(x => x.SchoolId)
 				.HasColumnName("school_id")
 				.IsRequired();
-			builder.Property(x => x.Room)
-				.HasColumnName("room")
+			builder.Property(x => x.Name)
+				.HasColumnName("name")
 				.HasMaxLength(100);
 			builder.Property(x => x.Uri)
 				.HasColumnName("uri")
