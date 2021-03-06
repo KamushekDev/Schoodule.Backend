@@ -15,12 +15,10 @@ namespace Schoodule.DataAccess.Configs
 				.HasColumnName("id")
 				.IsRequired()
 				.ValueGeneratedOnAdd();
-
 			builder.Property(x => x.Name)
 				.HasColumnName("name")
 				.IsRequired()
 				.HasMaxLength(100);
-
 			builder.Property(x => x.SchoolId)
 				.HasColumnName("school_id")
 				.IsRequired();
@@ -28,9 +26,11 @@ namespace Schoodule.DataAccess.Configs
 			builder.HasOne(x => x.School)
 				.WithMany(x => x.Groups)
 				.HasForeignKey(x => x.SchoolId);
-
 			builder.HasMany(x => x.Users)
 				.WithMany(x => x.Groups);
+
+			builder.HasIndex(x => new {x.SchoolId, x.Name})
+				.IsUnique();
 		}
 	}
 }
