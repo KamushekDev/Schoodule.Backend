@@ -9,13 +9,13 @@ using Schoodule.Core;
 using Schoodule.Core.Exceptions;
 using Schoodule.DataAccess;
 
-namespace Schoodule.Business.Features.Schools
+namespace Schoodule.Business.Features.Groups
 {
 	public static class Get
 	{
-		public record Command([property: Required] long Id) : IRequest<School>;
+		public record Command([property: Required] long Id) : IRequest<Group>;
 
-		public class Handler : IRequestHandler<Command, School>
+		public class Handler : IRequestHandler<Command, Group>
 		{
 			private readonly AppDbContext _context;
 			private readonly IMapper _mapper;
@@ -26,12 +26,12 @@ namespace Schoodule.Business.Features.Schools
 				_mapper = mapper;
 			}
 
-			public async Task<School> Handle(Command request, CancellationToken cancellationToken)
+			public async Task<Group> Handle(Command request, CancellationToken cancellationToken)
 			{
-				var entity = await _context.Schools.FindByKeysAsync(cancellationToken, request.Id);
+				var entity = await _context.Groups.FindByKeysAsync(cancellationToken, request.Id);
 				if (entity is null)
-					throw new EntityNotFoundException(Errors.E2);
-				return _mapper.Map<School>(entity);
+					throw new EntityNotFoundException(Errors.E1);
+				return _mapper.Map<Group>(entity);
 			}
 		}
 	}

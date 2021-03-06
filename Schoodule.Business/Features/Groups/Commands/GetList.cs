@@ -7,13 +7,13 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Schoodule.DataAccess;
 
-namespace Schoodule.Business.Features.Schools
+namespace Schoodule.Business.Features.Groups
 {
 	public static class GetList
 	{
-		public record Command(string Name = null) : IRequest<List<School>>;
+		public record Command(string Name = null) : IRequest<List<Group>>;
 
-		public class Handler : IRequestHandler<Command, List<School>>
+		public class Handler : IRequestHandler<Command, List<Group>>
 		{
 			private readonly AppDbContext _context;
 			private readonly IMapper _mapper;
@@ -24,12 +24,12 @@ namespace Schoodule.Business.Features.Schools
 				_mapper = mapper;
 			}
 
-			public async Task<List<School>> Handle(Command request, CancellationToken cancellationToken)
+			public async Task<List<Group>> Handle(Command request, CancellationToken cancellationToken)
 			{
 				//todo: filter by user
-				var entities = _context.Schools.FilterAndOrder(request);
+				var entities = _context.Groups.FilterAndOrder(request);
 
-				return await _mapper.ProjectTo<School>(entities)
+				return await _mapper.ProjectTo<Group>(entities)
 					.ToListAsync(cancellationToken);
 			}
 		}

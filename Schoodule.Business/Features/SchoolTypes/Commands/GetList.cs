@@ -27,7 +27,6 @@ namespace Schoodule.Business.Features.SchoolTypes
 
 			public Task<List<SchoolType>> Handle(Command request, CancellationToken cancellationToken)
 			{
-				var schoolType = new SchoolTypeEntity {Name = request.Name};
 				var result = _context.SchoolTypes.FilterAndOrder(request);
 				return _mapper.ProjectTo<SchoolType>(result)
 					.ToListAsync(cancellationToken);

@@ -5,6 +5,7 @@ using AutoMapper;
 using Contract.Models;
 using MediatR;
 using Schoodule.Business.Infrastructure;
+using Schoodule.Core;
 using Schoodule.Core.Exceptions;
 using Schoodule.DataAccess;
 
@@ -29,7 +30,7 @@ namespace Schoodule.Business.Features.SchoolTypes
 			{
 				var schoolType = await _context.SchoolTypes.FindByKeysAsync(cancellationToken, request.Id);
 				if (schoolType is null)
-					throw new EntityNotFoundException("SchoolType with that Id isn't found.");
+					throw new EntityNotFoundException(Errors.E3);
 				return _mapper.Map<SchoolType>(schoolType);
 			}
 		}

@@ -6,35 +6,42 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Schoodule.Business.Features.Schools;
+using Schoodule.Business.Features.Groups;
 
-namespace Schoodule.API.Controllers.SystemAdmin
+namespace Schoodule.API.Controllers.SchoolAdmin
 {
-	[Route("api/v1/systemAdmin/school")]
-	public sealed class SchoolController : ControllerBase
+	[Route("api/v1/schoolAdmin/group")]
+	public sealed class GroupController : ControllerBase
 	{
 		private readonly IMediator _mediator;
-		private readonly ILogger<SchoolController> _logger;
+		private readonly ILogger<GroupController> _logger;
 
-		public SchoolController(IMediator mediator, ILogger<SchoolController> logger)
+		public GroupController(IMediator mediator, ILogger<GroupController> logger)
 		{
 			_mediator = mediator;
 			_logger = logger;
 		}
 
 		[HttpGet]
-		[ProducesResponseType(typeof(List<School>), StatusCodes.Status200OK)]
-		public Task<List<School>> Get()
+		[ProducesResponseType(typeof(List<Group>), StatusCodes.Status200OK)]
+		public Task<List<Group>> Get()
 		{
 			return _mediator.Send(new GetList.Command());
 		}
 
 		[HttpGet("{id:int}")]
-		[ProducesResponseType(typeof(School), StatusCodes.Status200OK)]
+		[ProducesResponseType(typeof(Group), StatusCodes.Status200OK)]
 		[ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]
-		public Task<School> Get(int id)
+		public Task<Group> Get(int id)
 		{
 			return _mediator.Send(new Get.Command(id));
+		}
+
+		[HttpGet("search/{name}")]
+		[ProducesResponseType(typeof(List<Group>), StatusCodes.Status200OK)]
+		public Task<List<Group>> Post(string name, CancellationToken token)
+		{
+			return _mediator.Send(new GetList.Command(name), token);
 		}
 
 		[HttpPost]
@@ -42,13 +49,6 @@ namespace Schoodule.API.Controllers.SystemAdmin
 		public Task<long> Post([FromBody] Add.Command request)
 		{
 			return _mediator.Send(request);
-		}
-
-		[HttpGet("search/{name}")]
-		[ProducesResponseType(typeof(List<School>), StatusCodes.Status200OK)]
-		public Task<List<School>> Post(string name, CancellationToken token)
-		{
-			return _mediator.Send(new GetList.Command(name), token);
 		}
 
 		[HttpDelete("{id:int}")]

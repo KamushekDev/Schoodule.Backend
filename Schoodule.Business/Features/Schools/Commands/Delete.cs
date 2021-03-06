@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Schoodule.Business.Infrastructure;
+using Schoodule.Core;
 using Schoodule.Core.Exceptions;
 using Schoodule.DataAccess;
 
@@ -25,7 +26,7 @@ namespace Schoodule.Business.Features.Schools
 			{
 				var entity = await _context.Schools.FindByKeysAsync(cancellationToken, request.Id);
 				if (entity is null)
-					throw new EntityNotFoundException($"School with id {request.Id} wasn't found.");
+					throw new EntityNotFoundException(Errors.E2);
 				_context.Schools.Remove(entity);
 				await _context.SaveChangesAsync(cancellationToken);
 				return Unit.Value;
