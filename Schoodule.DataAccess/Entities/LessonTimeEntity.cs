@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using NodaTime;
 
 namespace Schoodule.DataAccess.Entities
@@ -8,6 +9,9 @@ namespace Schoodule.DataAccess.Entities
 		public string Symbol { get; set; }
 		public LocalTime Time { get; set; }
 		public long SchoolId { get; set; }
+
 		public SchoolEntity School { get; set; }
+
+		public ICollection<ClassEntity> Classes { get; set; } = new List<ClassEntity>();
 	}
 }

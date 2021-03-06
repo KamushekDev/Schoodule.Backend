@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Schoodule.DataAccess.Entities
 {
@@ -8,6 +9,9 @@ namespace Schoodule.DataAccess.Entities
 		public long SchoolId { get; set; }
 		public string Room { get; set; }
 		public Uri Uri { get; set; }
+
 		public SchoolEntity School { get; set; }
+
+		public ICollection<ClassEntity> Classes { get; set; } = new List<ClassEntity>();
 	}
 }
