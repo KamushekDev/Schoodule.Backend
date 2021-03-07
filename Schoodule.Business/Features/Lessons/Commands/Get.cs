@@ -19,7 +19,7 @@ namespace Schoodule.Business.Features.Lessons
 			public long Id { get; init; }
 		}
 
-		public class Handler
+		public class Handler : IRequestHandler<Command, Lesson>
 		{
 			private readonly IMapper _mapper;
 			private readonly AppDbContext _context;
@@ -30,12 +30,12 @@ namespace Schoodule.Business.Features.Lessons
 				_context = context;
 			}
 
-			public async Task<SchoolType> Handle(Command request, CancellationToken cancellationToken)
+			public async Task<Lesson> Handle(Command request, CancellationToken cancellationToken)
 			{
-				var schoolType = await _context.SchoolTypes.FindByKeysAsync(cancellationToken, request.Id);
-				if (schoolType is null)
+				var lesson = await _context.Lessons.FindByKeysAsync(cancellationToken, request.Id);
+				if (lesson is null)
 					throw new EntityNotFoundException(Errors.E4);
-				return _mapper.Map<SchoolType>(schoolType);
+				return _mapper.Map<Lesson>(lesson);
 			}
 		}
 	}

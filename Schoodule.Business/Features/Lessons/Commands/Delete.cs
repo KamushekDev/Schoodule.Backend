@@ -7,11 +7,11 @@ using Schoodule.Core;
 using Schoodule.Core.Exceptions;
 using Schoodule.DataAccess;
 
-namespace Schoodule.Business.Features.Groups
+namespace Schoodule.Business.Features.Lessons
 {
 	public static class Delete
 	{
-		public class Command : IRequest
+		public record Command : IRequest
 		{
 			[Required]
 			public long Id { get; init; }
@@ -28,10 +28,10 @@ namespace Schoodule.Business.Features.Groups
 
 			public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
 			{
-				var entity = await _context.Groups.FindByKeysAsync(cancellationToken, request.Id);
+				var entity = await _context.Lessons.FindByKeysAsync(cancellationToken, request.Id);
 				if (entity is null)
-					throw new EntityNotFoundException(Errors.E1);
-				_context.Groups.Remove(entity);
+					throw new EntityNotFoundException(Errors.E4);
+				_context.Lessons.Remove(entity);
 				await _context.SaveChangesAsync(cancellationToken);
 				return Unit.Value;
 			}
