@@ -27,4 +27,7 @@
     <data name="E3" xml:space="preserve">
         <value>Тип учебного заведения с таким идентификатором не найден</value>
     </data>
+    <data name="E4" xml:space="preserve">
+        <value>Урок с указанным идентификатором не найден</value>
+    </data>
 </root>

@@ -3,20 +3,21 @@ using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
+using NodaTime;
 using Schoodule.DataAccess;
 using Schoodule.DataAccess.Entities;
 
-namespace Schoodule.Business.Features.Schools
+namespace Schoodule.Business.Features.LessonTypes
 {
 	public static class Add
 	{
 		public record Command : IRequest<long>
 		{
 			[Required]
-			public string Name { get; init; }
+			public string Name { get; set; }
 
 			[Required]
-			public long SchoolTypeId { get; init; }
+			public long SchoolId { get; set; }
 		}
 
 		public class Handler : IRequestHandler<Command, long>
@@ -30,18 +31,13 @@ namespace Schoodule.Business.Features.Schools
 				_context = context;
 			}
 
-			public async Task<long> Handle(Command command, CancellationToken token)
+			public async Task<long> Handle(Command request, CancellationToken cancellationToken)
 			{
-				var school = new SchoolEntity
-				{
-					Name = command.Name,
-					SchoolTypeId = command.SchoolTypeId,
-				};
-
-				var result = await _context.Schools.AddAsync(school, token);
-
-				await _context.SaveChangesAsync(token);
-				return (result.Entity.Id);
+				var lessonType = new LessonTypeEntity
+					{Name = request.Name, SchoolId = request.SchoolId};
+				var result = await _context.LessonTypes.AddAsync(lessonType, cancellationToken);
+				await _context.SaveChangesAsync(cancellationToken);
+				return result.Entity.Id;
 			}
 		}
 	}

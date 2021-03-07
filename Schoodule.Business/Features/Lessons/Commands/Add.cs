@@ -6,17 +6,17 @@ using MediatR;
 using Schoodule.DataAccess;
 using Schoodule.DataAccess.Entities;
 
-namespace Schoodule.Business.Features.Schools
+namespace Schoodule.Business.Features.Lessons
 {
 	public static class Add
 	{
-		public record Command : IRequest<long>
+		public class Command : IRequest<long>
 		{
 			[Required]
-			public string Name { get; init; }
+			public string Name { get; set; }
 
 			[Required]
-			public long SchoolTypeId { get; init; }
+			public long SchoolId { get; set; }
 		}
 
 		public class Handler : IRequestHandler<Command, long>
@@ -30,18 +30,12 @@ namespace Schoodule.Business.Features.Schools
 				_context = context;
 			}
 
-			public async Task<long> Handle(Command command, CancellationToken token)
+			public async Task<long> Handle(Command request, CancellationToken cancellationToken)
 			{
-				var school = new SchoolEntity
-				{
-					Name = command.Name,
-					SchoolTypeId = command.SchoolTypeId,
-				};
-
-				var result = await _context.Schools.AddAsync(school, token);
-
-				await _context.SaveChangesAsync(token);
-				return (result.Entity.Id);
+				var lesson = new LessonEntity {Name = request.Name, SchoolId = request.SchoolId};
+				var result = await _context.Lessons.AddAsync(lesson, cancellationToken);
+				await _context.SaveChangesAsync(cancellationToken);
+				return result.Entity.Id;
 			}
 		}
 	}

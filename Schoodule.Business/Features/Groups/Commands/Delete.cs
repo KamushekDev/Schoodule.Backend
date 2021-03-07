@@ -11,7 +11,7 @@ namespace Schoodule.Business.Features.Groups
 {
 	public static class Delete
 	{
-		public class Command : IRequest
+		public record Command : IRequest
 		{
 			[Required]
 			public long Id { get; init; }

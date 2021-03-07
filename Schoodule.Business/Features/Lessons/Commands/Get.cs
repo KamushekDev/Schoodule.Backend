@@ -9,17 +9,17 @@ using Schoodule.Core;
 using Schoodule.Core.Exceptions;
 using Schoodule.DataAccess;
 
-namespace Schoodule.Business.Features.SchoolTypes
+namespace Schoodule.Business.Features.Lessons
 {
 	public static class Get
 	{
-		public record Command : IRequest<SchoolType>
+		public record Command : IRequest<Lesson>
 		{
 			[Required]
 			public long Id { get; init; }
 		}
 
-		public class Handler : IRequestHandler<Command, SchoolType>
+		public class Handler
 		{
 			private readonly IMapper _mapper;
 			private readonly AppDbContext _context;
@@ -34,7 +34,7 @@ namespace Schoodule.Business.Features.SchoolTypes
 			{
 				var schoolType = await _context.SchoolTypes.FindByKeysAsync(cancellationToken, request.Id);
 				if (schoolType is null)
-					throw new EntityNotFoundException(Errors.E3);
+					throw new EntityNotFoundException(Errors.E4);
 				return _mapper.Map<SchoolType>(schoolType);
 			}
 		}

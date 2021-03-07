@@ -86,5 +86,14 @@ namespace Schoodule.Core {
                 return ResourceManager.GetString("E3", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Урок с указанным идентификатором не найден.
+        /// </summary>
+        public static string E4 {
+            get {
+                return ResourceManager.GetString("E4", resourceCulture);
+            }
+        }
     }
 }

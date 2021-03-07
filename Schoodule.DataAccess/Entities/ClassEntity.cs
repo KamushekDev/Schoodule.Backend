@@ -4,6 +4,8 @@ namespace Schoodule.DataAccess.Entities
 	{
 		public long Id { get; set; }
 		public string Description { get; set; }
+		public Weekday Weekday { get; set; }
+		public WeekType WeekType { get; set; }
 
 		public long LessonId { get; set; }
 		public long LessonTypeId { get; set; }
@@ -12,7 +14,7 @@ namespace Schoodule.DataAccess.Entities
 		public long TeacherId { get; set; }
 		public long GroupId { get; set; }
 		public long RoomId { get; set; }
-		
+
 		public LessonEntity Lesson { get; set; }
 		public LessonTypeEntity LessonType { get; set; }
 		public LessonTimeEntity LessonTime { get; set; }

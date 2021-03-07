@@ -13,7 +13,7 @@ namespace Schoodule.Business.Features.Groups
 {
 	public static class Get
 	{
-		public class Command : IRequest<Group>
+		public record Command : IRequest<Group>
 		{
 			[Required]
 			public long Id { get; init; }

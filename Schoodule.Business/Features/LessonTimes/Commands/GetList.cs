@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -8,17 +7,13 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Schoodule.DataAccess;
 
-namespace Schoodule.Business.Features.Groups
+namespace Schoodule.Business.Features.LessonTimes
 {
 	public static class GetList
 	{
-		public record Command : IRequest<List<Group>>
-		{
-			[Required]
-			public string Name { get; init; }
-		}
+		public record Command : IRequest<List<LessonTime>> { }
 
-		public class Handler : IRequestHandler<Command, List<Group>>
+		public class Handler : IRequestHandler<Command, List<LessonTime>>
 		{
 			private readonly AppDbContext _context;
 			private readonly IMapper _mapper;
@@ -29,11 +24,12 @@ namespace Schoodule.Business.Features.Groups
 				_mapper = mapper;
 			}
 
-			public async Task<List<Group>> Handle(Command request, CancellationToken cancellationToken)
+			public async Task<List<LessonTime>> Handle(Command request, CancellationToken cancellationToken)
 			{
-				var entities = _context.Groups.FilterAndOrder(request);
+				//todo: filter by user
+				var entities = _context.LessonTimes;
 
-				return await _mapper.ProjectTo<Group>(entities)
+				return await _mapper.ProjectTo<LessonTime>(entities)
 					.ToListAsync(cancellationToken);
 			}
 		}

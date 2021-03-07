@@ -12,7 +12,7 @@ namespace Schoodule.Business.Features.SchoolTypes
 {
 	public static class GetList
 	{
-		public class Command : IRequest<List<SchoolType>>
+		public record Command : IRequest<List<SchoolType>>
 		{
 			[Required]
 			public string Name { get; init; }

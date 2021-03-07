@@ -9,17 +9,17 @@ using Schoodule.Core;
 using Schoodule.Core.Exceptions;
 using Schoodule.DataAccess;
 
-namespace Schoodule.Business.Features.SchoolTypes
+namespace Schoodule.Business.Features.LessonTimes
 {
 	public static class Get
 	{
-		public record Command : IRequest<SchoolType>
+		public record Command : IRequest<LessonTime>
 		{
 			[Required]
 			public long Id { get; init; }
 		}
 
-		public class Handler : IRequestHandler<Command, SchoolType>
+		public class Handler : IRequestHandler<Command, LessonTime>
 		{
 			private readonly IMapper _mapper;
 			private readonly AppDbContext _context;
@@ -30,12 +30,12 @@ namespace Schoodule.Business.Features.SchoolTypes
 				_context = context;
 			}
 
-			public async Task<SchoolType> Handle(Command request, CancellationToken cancellationToken)
+			public async Task<LessonTime> Handle(Command request, CancellationToken cancellationToken)
 			{
-				var schoolType = await _context.SchoolTypes.FindByKeysAsync(cancellationToken, request.Id);
-				if (schoolType is null)
-					throw new EntityNotFoundException(Errors.E3);
-				return _mapper.Map<SchoolType>(schoolType);
+				var lessonTime = await _context.LessonTimes.FindByKeysAsync(cancellationToken, request.Id);
+				if (lessonTime is null)
+					throw new EntityNotFoundException(Errors.E4);
+				return _mapper.Map<LessonTime>(lessonTime);
 			}
 		}
 	}

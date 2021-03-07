@@ -12,7 +12,7 @@ namespace Schoodule.Business.Features.Groups
 {
 	public static class GetList
 	{
-		public record Command : IRequest<List<Group>>
+		public class Command : IRequest<List<Group>>
 		{
 			[Required]
 			public string Name { get; init; }
@@ -31,6 +31,7 @@ namespace Schoodule.Business.Features.Groups
 
 			public async Task<List<Group>> Handle(Command request, CancellationToken cancellationToken)
 			{
+				//todo: filter by user
 				var entities = _context.Groups.FilterAndOrder(request);
 
 				return await _mapper.ProjectTo<Group>(entities)
