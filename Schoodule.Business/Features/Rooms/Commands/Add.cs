@@ -37,7 +37,7 @@ namespace Schoodule.Business.Features.Rooms
 			public async Task<long> Handle(Command request, CancellationToken cancellationToken)
 			{
 				var lessonType = new RoomEntity
-					{Name = request.Name, Uri = new Uri(request.Uri), SchoolId = request.SchoolId};
+					{Name = request.Name, Uri = request.Uri, SchoolId = request.SchoolId};
 				var result = await _context.Rooms.AddAsync(lessonType, cancellationToken);
 				await _context.SaveChangesAsync(cancellationToken);
 				return result.Entity.Id;

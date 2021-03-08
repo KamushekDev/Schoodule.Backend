@@ -17,7 +17,12 @@ namespace Schoodule.Business.Features.LessonTimes
 			public string Symbol { get; init; }
 
 			[Required]
-			public LocalTime Time { get; init; }
+			[Range(0, 23)]
+			public int Hours { get; set; }
+
+			[Required]
+			[Range(0, 59)]
+			public int Minutes { get; set; }
 
 			[Required]
 			public long SchoolId { get; init; }
@@ -37,7 +42,11 @@ namespace Schoodule.Business.Features.LessonTimes
 			public async Task<long> Handle(Command request, CancellationToken cancellationToken)
 			{
 				var lessonType = new LessonTimeEntity
-					{Time = request.Time, Symbol = request.Symbol, SchoolId = request.SchoolId};
+				{
+					Time = new LocalTime(request.Hours, request.Minutes),
+					Symbol = request.Symbol,
+					SchoolId = request.SchoolId
+				};
 				var result = await _context.LessonTimes.AddAsync(lessonType, cancellationToken);
 				await _context.SaveChangesAsync(cancellationToken);
 				return result.Entity.Id;

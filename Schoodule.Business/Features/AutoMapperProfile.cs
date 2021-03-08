@@ -7,19 +7,15 @@ namespace Schoodule.Business.Features
 	{
 		public AutoMapperProfile()
 		{
-			CreateMap<LessonTimeEntity, LessonTime>();
-
+			CreateMap<ClassEntity, Class>();
 			CreateMap<GroupEntity, Group>();
-
 			CreateMap<LessonEntity, Lesson>();
-
-			CreateMap<SchoolEntity, School>();
-
-			CreateMap<SchoolTypeEntity, SchoolType>();
-
+			CreateMap<LessonTimeEntity, LessonTime>();
 			CreateMap<LessonTypeEntity, LessonType>();
-			
 			CreateMap<RoomEntity, Room>();
+			CreateMap<SchoolEntity, School>();
+			CreateMap<SchoolTypeEntity, SchoolType>();
+			CreateMap<TeacherEntity, Teacher>();
 		}
 	}
 }
