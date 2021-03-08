@@ -26,6 +26,6 @@ namespace Schoodule.Core.Exceptions
 		protected UserException(SerializationInfo info, StreamingContext context)
 			: base(info, context) { }
 
-		public int StatusCode { get; set; }
+		public int StatusCode { get; init; }
 	}
 }

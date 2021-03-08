@@ -14,10 +14,10 @@ namespace Schoodule.Business.Features.LessonTypes
 		public record Command : IRequest<long>
 		{
 			[Required]
-			public string Name { get; set; }
+			public string Name { get; init; }
 
 			[Required]
-			public long SchoolId { get; set; }
+			public long SchoolId { get; init; }
 		}
 
 		public class Handler : IRequestHandler<Command, long>

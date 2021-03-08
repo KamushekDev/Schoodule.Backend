@@ -14,13 +14,13 @@ namespace Schoodule.Business.Features.LessonTimes
 		public record Command : IRequest<long>
 		{
 			[Required]
-			public string Symbol { get; set; }
+			public string Symbol { get; init; }
 
 			[Required]
-			public LocalTime Time { get; set; }
+			public LocalTime Time { get; init; }
 
 			[Required]
-			public long SchoolId { get; set; }
+			public long SchoolId { get; init; }
 		}
 
 		public class Handler : IRequestHandler<Command, long>

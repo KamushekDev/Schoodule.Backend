@@ -13,15 +13,15 @@ namespace Schoodule.Business.Features.Classes
 	{
 		public record Command : IRequest<long>
 		{
-			[Required] public Weekday Weekday { get; set; }
-			[Required] public WeekType WeekType { get; set; }
-			[Required] public long LessonId { get; set; }
-			[Required] public long LessonTypeId { get; set; }
-			[Required] public long LessonTimeId { get; set; }
+			[Required] public Weekday Weekday { get; init; }
+			[Required] public WeekType WeekType { get; init; }
+			[Required] public long LessonId { get; init; }
+			[Required] public long LessonTypeId { get; init; }
+			[Required] public long LessonTimeId { get; init; }
 			[Required] public long SchoolId { get; init; }
-			[Required] public long TeacherId { get; set; }
-			[Required] public long GroupId { get; set; }
-			[Required] public long RoomId { get; set; }
+			[Required] public long TeacherId { get; init; }
+			[Required] public long GroupId { get; init; }
+			[Required] public long RoomId { get; init; }
 			public string Description { get; init; }
 		};
 

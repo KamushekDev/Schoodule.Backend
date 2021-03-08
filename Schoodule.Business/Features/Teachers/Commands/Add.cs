@@ -14,15 +14,15 @@ namespace Schoodule.Business.Features.Teachers
 		public record Command : IRequest<long>
 		{
 			[Required]
-			public string Firstname { get; set; }
+			public string Firstname { get; init; }
 
 			[Required]
-			public string Lastname { get; set; }
+			public string Lastname { get; init; }
 
-			public string Patronymic { get; set; }
+			public string Patronymic { get; init; }
 
 			[EmailAddress]
-			public string Email { get; set; }
+			public string Email { get; init; }
 
 			[Phone]
 			public string Phone { get; set; }
