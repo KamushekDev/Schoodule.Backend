@@ -7,7 +7,7 @@ using Schoodule.Core;
 using Schoodule.Core.Exceptions;
 using Schoodule.DataAccess;
 
-namespace Schoodule.Business.Features.Rooms
+namespace Schoodule.Business.Features.Teachers
 {
 	public static class Delete
 	{
@@ -28,10 +28,10 @@ namespace Schoodule.Business.Features.Rooms
 
 			public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
 			{
-				var entity = await _context.Rooms.FindByKeysAsync(cancellationToken, request.Id);
+				var entity = await _context.Teachers.FindByKeysAsync(cancellationToken, request.Id);
 				if (entity is null)
 					throw new EntityNotFoundException(Errors.E4);
-				_context.Rooms.Remove(entity);
+				_context.Teachers.Remove(entity);
 				await _context.SaveChangesAsync(cancellationToken);
 				return Unit.Value;
 			}

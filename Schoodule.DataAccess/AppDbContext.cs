@@ -17,6 +17,7 @@ namespace Schoodule.DataAccess
 		public DbSet<LessonTimeEntity> LessonTimes { get; set; }
 		public DbSet<RoomEntity> Rooms { get; set; }
 		public DbSet<TeacherEntity> Teachers { get; set; }
+		public DbSet<ClassEntity> Classes { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{

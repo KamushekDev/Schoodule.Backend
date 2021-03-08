@@ -23,9 +23,4 @@
         <ProjectReference Include="..\Schoodule.DataAccess\Schoodule.DataAccess.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Features\Groups\Models" />
-      <Folder Include="Features\Schools\Models" />
-    </ItemGroup>
-
 </Project>
