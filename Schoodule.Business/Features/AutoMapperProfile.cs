@@ -18,6 +18,8 @@ namespace Schoodule.Business.Features
 			CreateMap<SchoolTypeEntity, SchoolType>();
 
 			CreateMap<LessonTypeEntity, LessonType>();
+			
+			CreateMap<RoomEntity, Room>();
 		}
 	}
 }

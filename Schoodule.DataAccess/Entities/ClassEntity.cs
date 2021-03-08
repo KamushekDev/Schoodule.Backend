@@ -1,3 +1,5 @@
+using Schoodule.DataAccess.Enums;
+
 namespace Schoodule.DataAccess.Entities
 {
 	public class ClassEntity
