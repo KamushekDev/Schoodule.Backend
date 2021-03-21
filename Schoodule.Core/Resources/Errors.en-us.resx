@@ -12,6 +12,15 @@
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
     <data name="E1" xml:space="preserve">
-        <value>Name must not be empty</value>
+        <value>Group with that id isn't found</value>
+    </data>
+    <data name="E2" xml:space="preserve">
+        <value>School with that id isn't found</value>
+    </data>
+    <data name="E3" xml:space="preserve">
+        <value>SchoolType with that id isn't found</value>
+    </data>
+    <data name="E4" xml:space="preserve">
+        <value>Lesson with that id isn't found</value>
     </data>
 </root>

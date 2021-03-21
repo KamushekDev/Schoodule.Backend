@@ -5,10 +5,12 @@
   &lt;TestAncestor&gt;
     &lt;TestId&gt;xUnit::17944834-F769-4B64-BB2A-2F6BBB2D16C5::net5.0::Schoodule.Business.Tests.Features.Example.GetTest.GetExampleEmptyNameValidationTest&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::17944834-F769-4B64-BB2A-2F6BBB2D16C5::net5.0::Schoodule.Business.Tests.Features.Example.GetTest.GetExampleTest&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::17944834-F769-4B64-BB2A-2F6BBB2D16C5::net5.0::Schoodule.Business.Tests.Features.Example.GetTest.GetNotExistingExampleTest&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::17944834-F769-4B64-BB2A-2F6BBB2D16C5::net5.0::Schoodule.Business.Tests.Features.Example.GetTest.GetExistingExampleTest&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=src_002FSchoodule_002ECore_002FResources_002FErrors/@EntryIndexedValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=src_002FSchoodule_002ECore_002FResources_002FMessages/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=src_002FSchoodule_002ECore_002FResources_002FMessages/@EntryIndexedValue">False</s:Boolean>
 	
 	
 	

@@ -1,36 +1,68 @@
 using System.Linq;
 using System.Text.Json.Serialization;
+using System.Threading.Tasks;
 using FluentValidation;
 using MediatR;
 using MediatR.Registration;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Npgsql;
 using Schoodule.API.Infrastructure;
 using Schoodule.Business;
 using Schoodule.Business.Infrastructure;
+using Schoodule.DataAccess;
 
 namespace Schoodule.API
 {
 	public class Startup
 	{
+		public Startup(IConfiguration configuration, IWebHostEnvironment env)
+		{
+			Configuration = configuration;
+			Environment = env;
+		}
+
+		public IConfiguration Configuration { get; }
+
+		public IWebHostEnvironment Environment { get; }
+
 		// This method gets called by the runtime. Use this method to add services to the container.
 		// For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
 		public void ConfigureServices(IServiceCollection services)
 		{
-			services.AddHealthChecks();
-			services.AddSwaggerGen();
+			var dbConnectionString = new NpgsqlConnectionStringBuilder(Configuration["DB:ConnectionString"])
+			{
+				Password = Configuration["DB:Password"],
+			}.ConnectionString;
+
+			services.AddHealthChecks()
+				.AddNpgSql(dbConnectionString)
+				.AddDbContextCheck<AppDbContext>();
+
+			services.AddSwaggerGen(options => { options.CustomSchemaIds(type => type.ToString()); });
 			services.AddControllers(options => { options.Filters.Add<ApiErrorFilter>(); })
 				.AddJsonOptions(
 					options =>
-						{
+					{
 #if DEBUG
 						options.JsonSerializerOptions.WriteIndented = true;
 #endif
 						options.JsonSerializerOptions.IgnoreNullValues = true;
 						options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
-						});
+					});
+
+			services.AddDbContext<AppDbContext>(
+				options => options.UseNpgsql(
+					dbConnectionString,
+					sql => sql.UseNodaTime()));
+
+			services.AddAutoMapper(typeof(BusinessLayer).Assembly);
 
 			services.AddMediatR(typeof(BusinessLayer));
 			services.Scan(
@@ -60,7 +92,25 @@ namespace Schoodule.API
 			app.UseSwaggerUI(options => { options.SwaggerEndpoint("/swagger/v1/swagger.json", "Schoodule v1"); });
 			app
 				.UseRouting()
-				.UseEndpoints(routeBuilder => { routeBuilder.MapControllers(); });
+				.UseEndpoints(
+					endpoints =>
+					{
+						endpoints.MapControllers();
+						endpoints.MapHealthChecks(
+							"/health/ready",
+							new HealthCheckOptions
+							{
+								Predicate = check => check.Tags.Contains("ready")
+							});
+						endpoints.MapHealthChecks("/health/live", new HealthCheckOptions());
+						endpoints.MapGet(
+							"/",
+							context =>
+							{
+								context.Response.Redirect("/swagger");
+								return Task.CompletedTask;
+							});
+					});
 		}
 	}
 }

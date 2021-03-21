@@ -7,6 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.0-preview.1.21102.2" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.0-preview-20201123-03" />
         <PackageReference Include="Moq" Version="4.15.2" />
         <PackageReference Include="xunit" Version="2.4.1" />
@@ -22,6 +23,10 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Schoodule.Business\Schoodule.Business.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Features" />
     </ItemGroup>
 
 </Project>
