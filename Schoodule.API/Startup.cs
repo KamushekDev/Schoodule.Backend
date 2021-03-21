@@ -36,10 +36,7 @@ namespace Schoodule.API
 		// For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
 		public void ConfigureServices(IServiceCollection services)
 		{
-			var dbConnectionString = new NpgsqlConnectionStringBuilder(Configuration["DB:ConnectionString"])
-			{
-				Password = Configuration["DB:Password"],
-			}.ConnectionString;
+			var dbConnectionString = Configuration["POSTGRESQLCONNSTR_DB"];
 
 			services.AddHealthChecks()
 				.AddNpgSql(dbConnectionString)
@@ -83,10 +80,8 @@ namespace Schoodule.API
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 		{
-			if (env.IsDevelopment())
-			{
-				app.UseDeveloperExceptionPage();
-			}
+			app.UseDeveloperExceptionPage();
+			if (env.IsDevelopment()) { }
 
 			app.UseSwagger();
 			app.UseSwaggerUI(options => { options.SwaggerEndpoint("/swagger/v1/swagger.json", "Schoodule v1"); });

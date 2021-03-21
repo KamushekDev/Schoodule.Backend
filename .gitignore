@@ -3,5 +3,6 @@
 !.gitignore
 !.editorconfig
 !.gitattributes
+!.github
 **/bin/
 **/obj/
