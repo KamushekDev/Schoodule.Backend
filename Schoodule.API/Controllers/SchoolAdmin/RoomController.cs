@@ -9,7 +9,9 @@ using Schoodule.Business.Features.Rooms;
 
 namespace Schoodule.API.Controllers.SchoolAdmin
 {
-	[Route("api/v1/schoolAdmin/room")]
+	[ApiController]
+	[ApiVersion("0.1")]
+	[Route("api/schoolAdmin/room")]
 	public sealed class RoomController : ControllerBase
 	{
 		private readonly IMediator _mediator;
