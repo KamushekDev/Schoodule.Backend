@@ -1,10 +1,8 @@
-using System.IO;
-using System.Reflection;
+using System.Text;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using Microsoft.Extensions.PlatformAbstractions;
 using Schoodule.API.Infrastructure;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
@@ -21,7 +19,23 @@ namespace Schoodule.API.Extensions
 					// add a custom operation filter which sets default values
 					options.OperationFilter<SwaggerDefaultValues>();
 
-					options.CustomSchemaIds(type => type.ToString());
+					options.CustomSchemaIds(
+						type =>
+						{
+							var sb = new StringBuilder();
+							var currentType = type;
+
+							while (currentType is not null)
+							{
+								sb.Insert(0, currentType.Name);
+								currentType = currentType.DeclaringType;
+							}
+
+							if (type.IsNested && type.Namespace is not null)
+								sb.Insert(0, type.Namespace.Substring(type.Namespace.LastIndexOf('.')+1));
+
+							return sb.ToString();
+						});
 
 					// integrate xml comments
 					// var basePath = PlatformServices.Default.Application.ApplicationBasePath;
