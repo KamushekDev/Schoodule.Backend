@@ -10,7 +10,9 @@ using Schoodule.Business.Features.Groups;
 
 namespace Schoodule.API.Controllers.SchoolAdmin
 {
-	[Route("api/v1/schoolAdmin/group")]
+	[ApiController]
+	[ApiVersion("0.1")]
+	[Route("api/schoolAdmin/group")]
 	public sealed class GroupController : ControllerBase
 	{
 		private readonly IMediator _mediator;

@@ -1,18 +1,14 @@
-using System.Linq;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
-using FluentValidation;
-using MediatR;
-using MediatR.Registration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Npgsql;
+using Schoodule.API.Extensions;
 using Schoodule.API.Infrastructure;
 using Schoodule.Business;
 using Schoodule.Business.Infrastructure;
@@ -42,7 +38,6 @@ namespace Schoodule.API
 				.AddNpgSql(dbConnectionString)
 				.AddDbContextCheck<AppDbContext>();
 
-			services.AddSwaggerGen(options => { options.CustomSchemaIds(type => type.ToString()); });
 			services.AddControllers(options => { options.Filters.Add<ApiErrorFilter>(); })
 				.AddJsonOptions(
 					options =>
@@ -54,6 +49,10 @@ namespace Schoodule.API
 						options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
 					});
 
+			services.AddConfiguredVersioning();
+
+			services.AddConfiguredSwagger();
+
 			services.AddDbContext<AppDbContext>(
 				options => options.UseNpgsql(
 					dbConnectionString,
@@ -61,30 +60,17 @@ namespace Schoodule.API
 
 			services.AddAutoMapper(typeof(BusinessLayer).Assembly);
 
-			services.AddMediatR(typeof(BusinessLayer));
-			services.Scan(
-				scan => scan
-					.FromAssembliesOf(typeof(Startup), typeof(BusinessLayer))
-					.AddClasses(classes => classes.AssignableTo(typeof(IValidator<>)))
-					.As(
-						type => type.GetInterfaces()
-							.Where(
-								i => i.IsGenericType &&
-								     !i.IsOpenGeneric() &&
-								     i.GetGenericTypeDefinition() == typeof(IValidator<>)))
-					.WithTransientLifetime());
+			services.AddConfiguredMediatR();
 
 			services.AddBusiness();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+		public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider provider)
 		{
 			app.UseDeveloperExceptionPage();
 			if (env.IsDevelopment()) { }
 
-			app.UseSwagger();
-			app.UseSwaggerUI(options => { options.SwaggerEndpoint("/swagger/v1/swagger.json", "Schoodule v1"); });
 			app
 				.UseRouting()
 				.UseEndpoints(
@@ -106,6 +92,7 @@ namespace Schoodule.API
 								return Task.CompletedTask;
 							});
 					});
+			app.UseConfiguredSwaggerUI(provider);
 		}
 	}
 }

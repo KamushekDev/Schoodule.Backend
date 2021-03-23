@@ -9,7 +9,9 @@ using Schoodule.Business.Features.LessonTimes;
 
 namespace Schoodule.API.Controllers.SchoolAdmin
 {
-	[Route("api/v1/schoolAdmin/lessonTime")]
+	[ApiController]
+	[ApiVersion("0.1")]
+	[Route("api/schoolAdmin/lessonTime")]
 	public class LessonTimeController : ControllerBase
 	{
 		private readonly IMediator _mediator;

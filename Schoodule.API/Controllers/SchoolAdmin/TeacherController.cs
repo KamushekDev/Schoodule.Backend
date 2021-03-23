@@ -9,7 +9,9 @@ using Schoodule.Business.Features.Teachers;
 
 namespace Schoodule.API.Controllers.SchoolAdmin
 {
-	[Route("api/v1/schoolAdmin/teacher")]
+	[ApiController]
+	[ApiVersion("0.1")]
+	[Route("api/schoolAdmin/teacher")]
 	public sealed class TeacherController : ControllerBase
 	{
 		private readonly IMediator _mediator;
