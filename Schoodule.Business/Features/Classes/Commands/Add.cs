@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
+using Schoodule.Business.Attributes;
 using Schoodule.DataAccess;
 using Schoodule.DataAccess.Entities;
 using Schoodule.DataAccess.Enums;
@@ -11,6 +12,7 @@ namespace Schoodule.Business.Features.Classes
 {
 	public static class Add
 	{
+		[SwaggerSchemaId("AddClassCommand")]
 		public record Command : IRequest<long>
 		{
 			[Required] public Weekday Weekday { get; init; }

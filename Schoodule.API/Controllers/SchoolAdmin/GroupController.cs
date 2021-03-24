@@ -56,7 +56,7 @@ namespace Schoodule.API.Controllers.SchoolAdmin
 		[HttpDelete("{id:int}")]
 		[ProducesResponseType(typeof(void), StatusCodes.Status200OK)]
 		[ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]
-		public Task Delete(int id, CancellationToken token)
+		public Task<Unit> Delete(int id, CancellationToken token)
 		{
 			return _mediator.Send(new Delete.Command {Id = id}, token);
 		}
