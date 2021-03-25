@@ -21,13 +21,6 @@ namespace Schoodule.API.Controllers.SchoolAdmin
 			_mediator = mediator;
 		}
 
-		[HttpGet]
-		[ProducesResponseType(typeof(List<Room>), StatusCodes.Status200OK)]
-		public Task<List<Room>> Get()
-		{
-			return _mediator.Send(new GetList.Command());
-		}
-
 		[HttpGet("{id:int}")]
 		[ProducesResponseType(typeof(Room), StatusCodes.Status200OK)]
 		[ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]

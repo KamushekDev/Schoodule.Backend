@@ -24,13 +24,6 @@ namespace Schoodule.API.Controllers.SchoolAdmin
 			_logger = logger;
 		}
 
-		[HttpGet]
-		[ProducesResponseType(typeof(List<Class>), StatusCodes.Status200OK)]
-		public Task<List<Class>> Get()
-		{
-			return _mediator.Send(new GetList.Command());
-		}
-
 		[HttpGet("{id:int}")]
 		[ProducesResponseType(typeof(Class), StatusCodes.Status200OK)]
 		[ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]
