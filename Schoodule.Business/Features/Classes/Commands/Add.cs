@@ -3,7 +3,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
-using Schoodule.Business.Attributes;
 using Schoodule.DataAccess;
 using Schoodule.DataAccess.Entities;
 using Schoodule.DataAccess.Enums;
