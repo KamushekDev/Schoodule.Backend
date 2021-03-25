@@ -10,8 +10,9 @@ jobs:
   deploy-to-azure:
     runs-on: windows-latest
     needs: publish
-
     steps:
+    - name: Publish solution
+      run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
     - name: Deploy to Azure
       uses: azure/webapps-deploy@v2
       with:

@@ -1,4 +1,4 @@
-name: Test app Schoodule
+name: Build and test app
 
 on:
   push:
@@ -9,42 +9,38 @@ on:
 jobs:
   build: 
     runs-on: windows-latest
-
     steps:
     - uses: actions/checkout@master
-
     - name: Set up .NET Core
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: '5.0.x'
-
     - uses: actions/cache@v2
       with:
         path: |
-          ~/.nuget/packages
+          %userprofile%\.nuget\packages
+        key: ${{ runner.os }}-nuget-build-${{ hashFiles('**/packages.lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-nuget-build-
+    - name: Restore packages
+      run: dotnet restore --use-lock-file -s https://api.nuget.org/v3/index.json
+    - name: Build with dotnet
+      run: dotnet build --configuration Release
+  test:
+    runs-on: windows-latest
+    needs: build
+    steps:
+    - uses: actions/checkout@master
+    - uses: actions/cache@v2
+      id: cache-packages
+      with:
+        path: |
           %userprofile%\.nuget\packages
         key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
         restore-keys: |
           ${{ runner.os }}-nuget-
-
     - name: Restore packages
+      if: steps.cache-packages.outputs.cache-hit != 'true'
       run: dotnet restore --use-lock-file -s https://api.nuget.org/v3/index.json
-
-    - name: Build with dotnet
-      run: dotnet build --configuration Release
-
-  test:
-    runs-on: windows-latest
-    needs: build
-
-    steps:
     - name: Unit tests
       run: echo Tests should be here
-
-  publish:
-    runs-on: windows-latest
-    needs: test
-
-    steps:
-    - name: Publish solution
-      run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
