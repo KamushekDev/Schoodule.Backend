@@ -1,0 +1,33 @@
+name: Update Azure database - Schoodule
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'Schoodule.DataAccess/Migrations/**'
+  workflow_dispatch:
+
+jobs:
+  deploy-database:
+    runs-on: windows-latest
+    needs: test
+
+    steps:
+    - name: Login to Azure
+      uses: Azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }} 
+
+    - name: Get connection string
+      uses: Azure/get-keyvault-secrets@v1
+      with: 
+        keyvault: "SchooduleKeys"
+        secrets: 'ConnectionString'
+      id: secrets
+
+    - name: Update database
+      run: |
+        dotnet tool install --global dotnet-ef
+        dotnet tool restore
+        dotnet ef database update -p ./Schoodule.DataAccess -s ./Schoodule.API --connection "${{ steps.secrets.outputs.ConnectionString }}"
