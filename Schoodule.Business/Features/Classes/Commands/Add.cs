@@ -12,7 +12,6 @@ namespace Schoodule.Business.Features.Classes
 {
 	public static class Add
 	{
-		[SwaggerSchemaId("AddClassCommand")]
 		public record Command : IRequest<long>
 		{
 			[Required] public Weekday Weekday { get; init; }
