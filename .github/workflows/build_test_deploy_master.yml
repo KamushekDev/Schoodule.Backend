@@ -50,7 +50,7 @@ jobs:
       run: echo Tests should be here
   deploy-to-azure:
     runs-on: windows-latest
-    needs: publish
+    needs: test
     steps:
     - uses: actions/checkout@master
     - name: Set up .NET Core
