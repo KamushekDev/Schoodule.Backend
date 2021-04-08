@@ -1,3 +1,5 @@
+using Contract.Enums;
+
 namespace Contract.Models
 {
 	public record Class(
