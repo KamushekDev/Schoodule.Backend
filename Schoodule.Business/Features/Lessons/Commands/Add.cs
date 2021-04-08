@@ -19,8 +19,6 @@ namespace Schoodule.Business.Features.Lessons
 			[Required]
 			public long SchoolId { get; init; }
 
-			[Required]
-			public WeekType WeekType { get; init; }
 		}
 
 		public class Handler : IRequestHandler<Command, long>
@@ -37,7 +35,7 @@ namespace Schoodule.Business.Features.Lessons
 			public async Task<long> Handle(Command request, CancellationToken cancellationToken)
 			{
 				var lesson = new LessonEntity
-					{Name = request.Name, SchoolId = request.SchoolId, WeekType = request.WeekType};
+					{Name = request.Name, SchoolId = request.SchoolId};
 				var result = await _context.Lessons.AddAsync(lesson, cancellationToken);
 				await _context.SaveChangesAsync(cancellationToken);
 				return result.Entity.Id;

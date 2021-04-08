@@ -9,6 +9,7 @@ namespace Contract.Models
 		School School,
 		Teacher Teacher,
 		Group Group,
-		Room Room
+		Room Room,
+		WeekType WeekType
 	);
 }
