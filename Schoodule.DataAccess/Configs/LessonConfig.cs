@@ -22,6 +22,9 @@ namespace Schoodule.DataAccess.Configs
 			builder.Property(x => x.SchoolId)
 				.HasColumnName("group_id")
 				.IsRequired();
+			builder.Property(x => x.WeekType)
+				.HasColumnName("week_type")
+				.IsRequired();
 
 			builder.HasOne(x => x.School)
 				.WithMany(x => x.Lessons)

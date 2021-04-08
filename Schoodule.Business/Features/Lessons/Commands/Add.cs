@@ -5,6 +5,7 @@ using AutoMapper;
 using MediatR;
 using Schoodule.DataAccess;
 using Schoodule.DataAccess.Entities;
+using Schoodule.DataAccess.Enums;
 
 namespace Schoodule.Business.Features.Lessons
 {
@@ -17,6 +18,9 @@ namespace Schoodule.Business.Features.Lessons
 
 			[Required]
 			public long SchoolId { get; init; }
+
+			[Required]
+			public WeekType WeekType { get; init; }
 		}
 
 		public class Handler : IRequestHandler<Command, long>
@@ -32,7 +36,8 @@ namespace Schoodule.Business.Features.Lessons
 
 			public async Task<long> Handle(Command request, CancellationToken cancellationToken)
 			{
-				var lesson = new LessonEntity {Name = request.Name, SchoolId = request.SchoolId};
+				var lesson = new LessonEntity
+					{Name = request.Name, SchoolId = request.SchoolId, WeekType = request.WeekType};
 				var result = await _context.Lessons.AddAsync(lesson, cancellationToken);
 				await _context.SaveChangesAsync(cancellationToken);
 				return result.Entity.Id;

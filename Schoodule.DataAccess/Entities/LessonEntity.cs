@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Schoodule.DataAccess.Enums;
 
 namespace Schoodule.DataAccess.Entities
 {
@@ -7,6 +8,7 @@ namespace Schoodule.DataAccess.Entities
 		public long Id { get; set; }
 		public string Name { get; set; }
 		public long SchoolId { get; set; }
+		public WeekType WeekType { get; set; }
 
 		public SchoolEntity School { get; set; }
 
