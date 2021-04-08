@@ -1,4 +1,4 @@
 ﻿namespace Contract.Models
 {
-	public record WeekType(long Id, string Name);
+	public record WeekType(long Id, WeekType Type);
 }

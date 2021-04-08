@@ -6,6 +6,7 @@ using MediatR;
 using Schoodule.DataAccess;
 using Schoodule.DataAccess.Entities;
 using Schoodule.DataAccess.Enums;
+using Contract.Enums;
 
 namespace Schoodule.Business.Features.Classes
 {
