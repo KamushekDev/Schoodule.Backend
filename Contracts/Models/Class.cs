@@ -1,3 +1,5 @@
+using Contract.Enums;
+
 namespace Contract.Models
 {
 	public record Class(
@@ -9,6 +11,7 @@ namespace Contract.Models
 		School School,
 		Teacher Teacher,
 		Group Group,
-		Room Room
+		Room Room,
+		WeekType WeekType
 	);
 }
