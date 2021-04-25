@@ -34,7 +34,7 @@ namespace Schoodule.API.Controllers.SystemAdmin
 		[HttpGet("{id:int}")]
 		[ProducesResponseType(typeof(School), StatusCodes.Status200OK)]
 		[ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]
-		public Task<School> GetList(int id)
+		public Task<School> Get(int id)
 		{
 			return _mediator.Send(new Get.Command {Id = id});
 		}
