@@ -12,5 +12,6 @@ namespace Schoodule.DataAccess.Entities
 
 		public ICollection<UserEntity> Users { get; set; } = new List<UserEntity>();
 		public ICollection<ClassEntity> Classes { get; set; } = new List<ClassEntity>();
+		public ICollection<LiteratureEntity> Literatures { get; set; } = new List<LiteratureEntity>();
 	}
 }

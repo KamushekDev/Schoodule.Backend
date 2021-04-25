@@ -30,4 +30,7 @@
     <data name="E4" xml:space="preserve">
         <value>Урок с указанным идентификатором не найден</value>
     </data>
+    <data name="E5" xml:space="preserve">
+        <value>Литература с указанным индетификатором не найдена</value>
+    </data>
 </root>

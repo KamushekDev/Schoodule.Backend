@@ -26,7 +26,7 @@ namespace Schoodule.API.Controllers.SchoolAdmin
 
 		[HttpGet]
 		[ProducesResponseType(typeof(List<Group>), StatusCodes.Status200OK)]
-		public Task<List<Group>> Get()
+		public Task<List<Group>> GetList()
 		{
 			return _mediator.Send(new GetList.Command());
 		}

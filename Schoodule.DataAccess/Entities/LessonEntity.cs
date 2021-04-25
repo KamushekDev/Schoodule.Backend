@@ -11,5 +11,6 @@ namespace Schoodule.DataAccess.Entities
 		public SchoolEntity School { get; set; }
 
 		public ICollection<ClassEntity> Classes { get; set; } = new List<ClassEntity>();
+		public ICollection<LiteratureEntity> Literatures { get; set; } = new List<LiteratureEntity>();
 	}
 }

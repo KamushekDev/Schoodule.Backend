@@ -5,18 +5,19 @@ using Contract.Models;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Schoodule.Business.Features.Lessons;
+using Schoodule.Business.Features.Literatures;
+
 
 namespace Schoodule.API.Controllers.SchoolAdmin
 {
 	[ApiController]
 	[ApiVersion("0.1")]
-	[Route("api/schoolAdmin/lesson")]
-	public class LessonController : ControllerBase
+	[Route("api/schoolAdmin/literature")]
+	public class LiteratureController : ControllerBase
 	{
 		private readonly IMediator _mediator;
 
-		public LessonController(IMediator mediator)
+		public LiteratureController(IMediator mediator)
 		{
 			_mediator = mediator;
 		}
@@ -29,16 +30,16 @@ namespace Schoodule.API.Controllers.SchoolAdmin
 		}
 
 		[HttpGet]
-		[ProducesResponseType(typeof(List<Lesson>), StatusCodes.Status200OK)]
-		public Task<List<Lesson>> GetList()
+		[ProducesResponseType(typeof(List<Literature>), StatusCodes.Status200OK)]
+		public Task<List<Literature>> GetList()
 		{
 			return _mediator.Send(new GetList.Command());
 		}
 
 		[HttpGet("{id:int}")]
-		[ProducesResponseType(typeof(Lesson), StatusCodes.Status200OK)]
+		[ProducesResponseType(typeof(Literature), StatusCodes.Status200OK)]
 		[ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]
-		public Task<Lesson> Get(int id)
+		public Task<Literature> Get(int id)
 		{
 			return _mediator.Send(new Get.Command {Id = id});
 		}

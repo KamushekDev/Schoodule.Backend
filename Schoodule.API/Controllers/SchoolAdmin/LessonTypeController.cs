@@ -30,7 +30,7 @@ namespace Schoodule.API.Controllers.SchoolAdmin
 
 		[HttpGet]
 		[ProducesResponseType(typeof(List<LessonType>), StatusCodes.Status200OK)]
-		public Task<List<LessonType>> Get()
+		public Task<List<LessonType>> GetList()
 		{
 			return _mediator.Send(new GetList.Command());
 		}
