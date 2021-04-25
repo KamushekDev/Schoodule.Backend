@@ -20,7 +20,7 @@ namespace Schoodule.DataAccess.Configs
 				.IsRequired()
 				.HasMaxLength(100);
 			builder.Property(x => x.SchoolId)
-				.HasColumnName("group_id")
+				.HasColumnName("school_id")
 				.IsRequired();
 
 			builder.HasOne(x => x.School)
