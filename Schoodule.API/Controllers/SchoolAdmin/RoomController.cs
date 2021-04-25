@@ -31,7 +31,7 @@ namespace Schoodule.API.Controllers.SchoolAdmin
 
 		[HttpGet]
 		[ProducesResponseType(typeof(List<Room>), StatusCodes.Status200OK)]
-		public Task<List<Room>> Post(CancellationToken token)
+		public Task<List<Room>> GetList(CancellationToken token)
 		{
 			return _mediator.Send(new GetList.Command(), token);
 		}

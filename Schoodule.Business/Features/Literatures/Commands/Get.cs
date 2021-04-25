@@ -34,7 +34,7 @@ namespace Schoodule.Business.Features.Literatures
 			{
 				var literature = await _context.Literatures.FindByKeysAsync(cancellationToken, request.Id);
 				if (literature is null)
-					throw new EntityNotFoundException(Errors.E4);
+					throw new EntityNotFoundException(Errors.E5);
 				return _mapper.Map<Literature>(literature);
 			}
 		}

@@ -95,5 +95,14 @@ namespace Schoodule.Core {
                 return ResourceManager.GetString("E4", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Литература с указанным индетификатором не найдена.
+        /// </summary>
+        public static string E5 {
+            get {
+                return ResourceManager.GetString("E5", resourceCulture);
+            }
+        }
     }
 }

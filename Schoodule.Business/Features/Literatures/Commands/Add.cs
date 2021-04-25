@@ -14,7 +14,7 @@ namespace Schoodule.Business.Features.Literatures
 		{
 			[Required]
 			public string Name { get; init; }
-			public string Reference { get; init; }
+			public string Uri { get; init; }
 
 			[Required]
 			public long LessonId { get; init; }
@@ -39,7 +39,7 @@ namespace Schoodule.Business.Features.Literatures
 				var literature = new LiteratureEntity
 				{
 					Name = request.Name,
-					Reference = request.Reference,
+					Uri = request.Uri,
 					LessonId = request.LessonId,
 					GroupId = request.GroupId
 				};

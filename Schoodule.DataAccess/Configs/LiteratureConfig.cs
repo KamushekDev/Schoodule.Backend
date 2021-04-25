@@ -18,10 +18,10 @@ namespace Schoodule.DataAccess.Configs
 			builder.Property(x => x.Name)
 				.HasColumnName("name")
 				.IsRequired()
-				.HasMaxLength(1000);
-			builder.Property(x => x.Reference)
-				.HasColumnName("reference")
-				.HasMaxLength(100);
+				.HasMaxLength(1024);
+			builder.Property(x => x.Uri)
+				.HasColumnName("uri")
+				.HasMaxLength(1024);
 			builder.Property(x => x.GroupId)
 				.HasColumnName("group_id")
 				.IsRequired();

@@ -30,7 +30,7 @@ namespace Schoodule.Business.Features.Literatures
 			{
 				var entity = await _context.Literatures.FindByKeysAsync(cancellationToken, request.Id);
 				if (entity is null)
-					throw new EntityNotFoundException(Errors.E4);
+					throw new EntityNotFoundException(Errors.E5);
 				_context.Literatures.Remove(entity);
 				await _context.SaveChangesAsync(cancellationToken);
 				return Unit.Value;
