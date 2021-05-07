@@ -21,7 +21,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schoodule.Core", "Schoodule
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schoodule.DataAccess", "Schoodule.DataAccess\Schoodule.DataAccess.csproj", "{25463223-DF6B-45ED-9AAC-A25829365452}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contracts", "Contracts\Contracts.csproj", "{750D9EA5-602F-4157-A542-C5B2746659D6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schoodule.DTO", "Schoodule.DTO\Schoodule.DTO.csproj", "{750D9EA5-602F-4157-A542-C5B2746659D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
