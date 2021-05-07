@@ -1,5 +1,4 @@
-using Schoodule.DataAccess.Enums;
-using Contract.Enums;
+using Schoodule.Core.Enums;
 
 namespace Schoodule.DataAccess.Entities
 {

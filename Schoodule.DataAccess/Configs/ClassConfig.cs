@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Schoodule.Core.Enums;
 using Schoodule.DataAccess.Entities;
-using Contract.Enums;
 
 namespace Schoodule.DataAccess.Configs
 {

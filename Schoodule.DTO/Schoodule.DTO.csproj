@@ -9,4 +9,8 @@
       <PackageReference Include="NodaTime" Version="3.0.5" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Schoodule.Core\Schoodule.Core.csproj" />
+    </ItemGroup>
+
 </Project>

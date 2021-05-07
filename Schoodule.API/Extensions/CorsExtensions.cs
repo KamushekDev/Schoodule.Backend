@@ -53,7 +53,6 @@ namespace Schoodule.API.Extensions
 				default:
 					//todo: fix exception
 					throw new Exception("Unexpected CORS policy.");
-					break;
 			}
 		}
 	}

@@ -1,4 +1,4 @@
-namespace Schoodule.DataAccess.Enums
+namespace Schoodule.Core.Enums
 {
 	public enum Weekday
 	{

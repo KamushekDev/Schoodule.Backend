@@ -43,7 +43,8 @@ namespace Schoodule.Business.Features.LessonTimes
 			{
 				var lessonType = new LessonTimeEntity
 				{
-					Time = new LocalTime(request.Hours, request.Minutes),
+					Hours = request.Hours,
+					Minutes = request.Minutes,
 					Symbol = request.Symbol,
 					SchoolId = request.SchoolId
 				};

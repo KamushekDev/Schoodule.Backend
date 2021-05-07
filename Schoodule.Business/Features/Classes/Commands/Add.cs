@@ -3,10 +3,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
+using Schoodule.Core.Enums;
 using Schoodule.DataAccess;
 using Schoodule.DataAccess.Entities;
-using Schoodule.DataAccess.Enums;
-using Contract.Enums;
 
 namespace Schoodule.Business.Features.Classes
 {
