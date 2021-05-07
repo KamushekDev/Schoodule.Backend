@@ -15,8 +15,14 @@ namespace Schoodule.DataAccess.Configs
 				.HasColumnName("id")
 				.IsRequired()
 				.ValueGeneratedOnAdd();
-			builder.Property(x => x.Time)
-				.HasColumnName("time")
+			builder.Property(x => x.Hours)
+				.HasColumnName("hour")
+				.IsRequired();
+			builder.Property(x => x.Minutes)
+				.HasColumnName("minutes")
+				.IsRequired();
+			builder.Property(x => x.Duration)
+				.HasColumnName("duration")
 				.IsRequired();
 			builder.Property(x => x.Symbol)
 				.HasColumnName("symbol");

@@ -1,4 +1,4 @@
 namespace Contract.Models
 {
-	public record School(long Id, string Name, SchoolType Type);
+	public record School(long Id, string Name, string SchoolTypeName);
 }

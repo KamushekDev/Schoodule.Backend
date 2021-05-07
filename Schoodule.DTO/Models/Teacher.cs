@@ -6,6 +6,5 @@ namespace Contract.Models
 		string Lastname,
 		string Patronymic,
 		string Email,
-		string Phone,
-		School School);
+		string Phone);
 }
