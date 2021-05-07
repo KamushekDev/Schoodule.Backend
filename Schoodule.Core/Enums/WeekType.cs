@@ -1,4 +1,4 @@
-﻿namespace Contract.Enums
+﻿namespace Schoodule.Core.Enums
 {
 	public enum WeekType
 	{

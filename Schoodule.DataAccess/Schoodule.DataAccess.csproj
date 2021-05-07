@@ -18,6 +18,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Schoodule.Core\Schoodule.Core.csproj" />
       <ProjectReference Include="..\Schoodule.DTO\Schoodule.DTO.csproj" />
     </ItemGroup>
 

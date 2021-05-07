@@ -1,4 +1,4 @@
-using Contract.Enums;
+using Schoodule.Core.Enums;
 
 namespace Contract.Models
 {
