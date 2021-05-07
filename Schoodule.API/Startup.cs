@@ -18,18 +18,13 @@ namespace Schoodule.API
 {
 	public class Startup
 	{
-		public Startup(IConfiguration configuration, IWebHostEnvironment env)
+		private IConfiguration Configuration { get; }
+
+		public Startup(IConfiguration configuration)
 		{
 			Configuration = configuration;
-			Environment = env;
 		}
 
-		public IConfiguration Configuration { get; }
-
-		public IWebHostEnvironment Environment { get; }
-
-		// This method gets called by the runtime. Use this method to add services to the container.
-		// For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
 		public void ConfigureServices(IServiceCollection services)
 		{
 			var dbConnectionString = Configuration["POSTGRESQLCONNSTR_DB"];
@@ -63,13 +58,18 @@ namespace Schoodule.API
 			services.AddConfiguredMediatR();
 
 			services.AddBusiness();
+
+			services.AddConfiguredCors(Configuration);
 		}
 
-		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider provider)
 		{
-			app.UseDeveloperExceptionPage();
-			if (env.IsDevelopment()) { }
+			app.UseConfiguredCors(Configuration);
+
+			if (env.IsDevelopment())
+			{
+				app.UseDeveloperExceptionPage();
+			}
 
 			app
 				.UseRouting()
