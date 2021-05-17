@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using NodaTime;
 
@@ -16,5 +17,7 @@ namespace Schoodule.DataAccess.Entities
 		public SchoolEntity School { get; set; }
 
 		public ICollection<ClassEntity> Classes { get; set; } = new List<ClassEntity>();
+
+		public TimeSpan EndTime => new TimeSpan(Hours, Minutes, 0).Add(new TimeSpan(0, Duration, 0));
 	}
 }

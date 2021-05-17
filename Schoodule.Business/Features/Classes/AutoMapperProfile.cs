@@ -1,3 +1,4 @@
+using System;
 using Contract.Models;
 using Schoodule.DataAccess.Entities;
 
@@ -15,13 +16,16 @@ namespace Schoodule.Business.Features.Classes
 					nameof(Class.LessonTypeName),
 					entity => entity.MapFrom(x => x.LessonType.Name))
 				.ForCtorParam(
-					nameof(Class.LessonTimeHour),
+					nameof(Class.LessonStartTimeHour),
 					entity => entity.MapFrom(x => x.LessonTime.Hours))
 				.ForCtorParam(
-					nameof(Class.LessonTimeMinute),
+					nameof(Class.LessonStartTimeMinute),
 					entity => entity.MapFrom(x => x.LessonTime.Minutes))
 				.ForCtorParam(
-					nameof(Class.LessonTimeDuration),
+					nameof(Class.LessonEndTimeHour),
+					entity => entity.MapFrom(x => new TimeSpan(x.LessonTime.Hours, x.LessonTime.Minutes, 0)))
+				.ForCtorParam(
+					nameof(Class.LessonEndTimeMinute),
 					entity => entity.MapFrom(x => x.LessonTime.Duration))
 				.ForCtorParam(
 					nameof(Class.SchoolName),
