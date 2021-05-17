@@ -20,6 +20,6 @@ namespace Contract.Models
 		string RoomUri,
 		bool RoomIsRemote,
 		WeekType WeekType,
-		Weekday Weekday
+		byte Weekday
 	);
 }

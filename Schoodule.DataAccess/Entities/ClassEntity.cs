@@ -6,7 +6,7 @@ namespace Schoodule.DataAccess.Entities
 	{
 		public long Id { get; set; }
 		public string Description { get; set; }
-		public Weekday Weekday { get; set; }
+		public byte Weekday { get; set; }
 		public WeekType WeekType { get; set; }
 
 		public long LessonId { get; set; }
