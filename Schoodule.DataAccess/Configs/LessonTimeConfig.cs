@@ -33,6 +33,8 @@ namespace Schoodule.DataAccess.Configs
 			builder.HasOne(x => x.School)
 				.WithMany(x => x.LessonTimes)
 				.HasForeignKey(x => x.SchoolId);
+
+			builder.Ignore(x => x.EndTime);
 		}
 	}
 }
