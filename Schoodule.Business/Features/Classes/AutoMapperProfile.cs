@@ -23,10 +23,10 @@ namespace Schoodule.Business.Features.Classes
 					entity => entity.MapFrom(x => x.LessonTime.Minutes))
 				.ForCtorParam(
 					nameof(Class.LessonEndTimeHour),
-					entity => entity.MapFrom(x => new TimeSpan(x.LessonTime.Hours, x.LessonTime.Minutes, 0)))
+					entity => entity.MapFrom(x => x.LessonTime.EndTime.Hours))
 				.ForCtorParam(
 					nameof(Class.LessonEndTimeMinute),
-					entity => entity.MapFrom(x => x.LessonTime.Duration))
+					entity => entity.MapFrom(x => x.LessonTime.EndTime.Minutes))
 				.ForCtorParam(
 					nameof(Class.SchoolName),
 					entity => entity.MapFrom(x => x.School.Name))
