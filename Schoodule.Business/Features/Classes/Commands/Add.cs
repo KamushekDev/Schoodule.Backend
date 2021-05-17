@@ -13,7 +13,7 @@ namespace Schoodule.Business.Features.Classes
 	{
 		public record Command : IRequest<long>
 		{
-			[Required] public Weekday Weekday { get; init; }
+			[Required] public byte Weekday { get; init; }
 			[Required] public WeekType WeekType { get; init; }
 			[Required] public long LessonId { get; init; }
 			[Required] public long LessonTypeId { get; init; }
